@@ -1,0 +1,711 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DbcOverzicht">
+          <Key>
+            <PropertyRef Name="Jaar" />
+            <PropertyRef Name="SpecialismeCode" />
+            <PropertyRef Name="DiagnoseCode" />
+            <PropertyRef Name="ZorgproductCode" />
+            <PropertyRef Name="Versie" />
+          </Key>
+          <Property Name="Jaar" Type="date" Nullable="false" />
+          <Property Name="SpecialismeCode" Type="smallint" Nullable="false" />
+          <Property Name="PatientenPerSpecialisme" Type="int" Nullable="false" />
+          <Property Name="SubtrajectenPerSpecialisme" Type="int" Nullable="false" />
+          <Property Name="DiagnoseCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="PatientenPerDiagnose" Type="int" Nullable="false" />
+          <Property Name="SubtrajectenPerDiagnose" Type="int" Nullable="false" />
+          <Property Name="ZorgproductCode" Type="smallint" Nullable="false" />
+          <Property Name="PatientenPerZorgproduct" Type="int" Nullable="false" />
+          <Property Name="SubtrajectenPerZorgproduct" Type="int" Nullable="false" />
+          <Property Name="Verkoopprijs" Type="money" />
+          <Property Name="Peildatum" Type="date" Nullable="false" />
+          <Property Name="Bestandsdatum" Type="date" />
+          <Property Name="Versie" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DbcProfiel">
+          <Key>
+            <PropertyRef Name="Jaar" />
+            <PropertyRef Name="SpecialismeCode" />
+            <PropertyRef Name="DiagnoseCode" />
+            <PropertyRef Name="ZorgproductCode" />
+            <PropertyRef Name="ZorgactiviteitCode" />
+            <PropertyRef Name="Versie" />
+          </Key>
+          <Property Name="Jaar" Type="date" Nullable="false" />
+          <Property Name="SpecialismeCode" Type="smallint" Nullable="false" />
+          <Property Name="DiagnoseCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ZorgproductCode" Type="smallint" Nullable="false" />
+          <Property Name="Patienten" Type="int" Nullable="false" />
+          <Property Name="Subtrajecten" Type="int" Nullable="false" />
+          <Property Name="ZorgactiviteitCode" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Zorgactiviteiten" Type="int" Nullable="false" />
+          <Property Name="Peildatum" Type="date" Nullable="false" />
+          <Property Name="Bestandsdatum" Type="date" />
+          <Property Name="Versie" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Diagnose">
+          <Key>
+            <PropertyRef Name="DiagnoseCode" />
+            <PropertyRef Name="SpecialismeCode" />
+            <PropertyRef Name="Versie" />
+          </Key>
+          <Property Name="DiagnoseCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="SpecialismeCode" Type="smallint" Nullable="false" />
+          <Property Name="Omschrijving" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Peildatum" Type="date" Nullable="false" />
+          <Property Name="Bestandsdatum" Type="date" />
+          <Property Name="Versie" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Specialisme">
+          <Key>
+            <PropertyRef Name="SpecialismeCode" />
+            <PropertyRef Name="Versie" />
+          </Key>
+          <Property Name="SpecialismeCode" Type="smallint" Nullable="false" />
+          <Property Name="Omschrijving" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Peildatum" Type="date" Nullable="false" />
+          <Property Name="Bestandsdatum" Type="date" />
+          <Property Name="Versie" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zorgactiviteit">
+          <Key>
+            <PropertyRef Name="ZorgactiviteitCode" />
+            <PropertyRef Name="Versie" />
+          </Key>
+          <Property Name="ZorgactiviteitCode" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Omschrijving" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ZorgprofielklasseCode" Type="smallint" Nullable="false" />
+          <Property Name="Peildatum" Type="date" Nullable="false" />
+          <Property Name="Bestandsdatum" Type="date" />
+          <Property Name="Versie" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zorgproduct">
+          <Key>
+            <PropertyRef Name="ZorgproductCode" />
+            <PropertyRef Name="Versie" />
+          </Key>
+          <Property Name="ZorgproductCode" Type="smallint" Nullable="false" />
+          <Property Name="OmschrijvingLatijn" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="OmschrijvingConsument" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="DeclaratiecodeVerzekerd" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="DeclaratiecodeOnverzekerd" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Peildatum" Type="date" Nullable="false" />
+          <Property Name="Bestandsdatum" Type="date" />
+          <Property Name="Versie" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zorgprofielklasse">
+          <Key>
+            <PropertyRef Name="ZorgprofielklasseCode" />
+            <PropertyRef Name="Versie" />
+          </Key>
+          <Property Name="ZorgprofielklasseCode" Type="smallint" Nullable="false" />
+          <Property Name="Omschrijving" Type="nvarchar" MaxLength="200" />
+          <Property Name="Versie" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DbcOverzicht_Diagnose">
+          <End Role="Diagnose" Type="Self.Diagnose" Multiplicity="1" />
+          <End Role="DbcOverzicht" Type="Self.DbcOverzicht" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnose">
+              <PropertyRef Name="DiagnoseCode" />
+              <PropertyRef Name="SpecialismeCode" />
+              <PropertyRef Name="Versie" />
+            </Principal>
+            <Dependent Role="DbcOverzicht">
+              <PropertyRef Name="DiagnoseCode" />
+              <PropertyRef Name="SpecialismeCode" />
+              <PropertyRef Name="Versie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DbcOverzicht_Specialisme">
+          <End Role="Specialisme" Type="Self.Specialisme" Multiplicity="1" />
+          <End Role="DbcOverzicht" Type="Self.DbcOverzicht" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialisme">
+              <PropertyRef Name="SpecialismeCode" />
+              <PropertyRef Name="Versie" />
+            </Principal>
+            <Dependent Role="DbcOverzicht">
+              <PropertyRef Name="SpecialismeCode" />
+              <PropertyRef Name="Versie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DbcOverzicht_Zorgproduct">
+          <End Role="Zorgproduct" Type="Self.Zorgproduct" Multiplicity="1" />
+          <End Role="DbcOverzicht" Type="Self.DbcOverzicht" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zorgproduct">
+              <PropertyRef Name="ZorgproductCode" />
+              <PropertyRef Name="Versie" />
+            </Principal>
+            <Dependent Role="DbcOverzicht">
+              <PropertyRef Name="ZorgproductCode" />
+              <PropertyRef Name="Versie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DbcProfiel_Diagnose">
+          <End Role="Diagnose" Type="Self.Diagnose" Multiplicity="1" />
+          <End Role="DbcProfiel" Type="Self.DbcProfiel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnose">
+              <PropertyRef Name="DiagnoseCode" />
+              <PropertyRef Name="SpecialismeCode" />
+              <PropertyRef Name="Versie" />
+            </Principal>
+            <Dependent Role="DbcProfiel">
+              <PropertyRef Name="DiagnoseCode" />
+              <PropertyRef Name="SpecialismeCode" />
+              <PropertyRef Name="Versie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DbcProfiel_Specialisme">
+          <End Role="Specialisme" Type="Self.Specialisme" Multiplicity="1" />
+          <End Role="DbcProfiel" Type="Self.DbcProfiel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialisme">
+              <PropertyRef Name="SpecialismeCode" />
+              <PropertyRef Name="Versie" />
+            </Principal>
+            <Dependent Role="DbcProfiel">
+              <PropertyRef Name="SpecialismeCode" />
+              <PropertyRef Name="Versie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DbcProfiel_Zorgactiviteit">
+          <End Role="Zorgactiviteit" Type="Self.Zorgactiviteit" Multiplicity="1" />
+          <End Role="DbcProfiel" Type="Self.DbcProfiel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zorgactiviteit">
+              <PropertyRef Name="ZorgactiviteitCode" />
+              <PropertyRef Name="Versie" />
+            </Principal>
+            <Dependent Role="DbcProfiel">
+              <PropertyRef Name="ZorgactiviteitCode" />
+              <PropertyRef Name="Versie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DbcProfiel_Zorgproduct">
+          <End Role="Zorgproduct" Type="Self.Zorgproduct" Multiplicity="1" />
+          <End Role="DbcProfiel" Type="Self.DbcProfiel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zorgproduct">
+              <PropertyRef Name="ZorgproductCode" />
+              <PropertyRef Name="Versie" />
+            </Principal>
+            <Dependent Role="DbcProfiel">
+              <PropertyRef Name="ZorgproductCode" />
+              <PropertyRef Name="Versie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diagnose_Specialisme">
+          <End Role="Specialisme" Type="Self.Specialisme" Multiplicity="1" />
+          <End Role="Diagnose" Type="Self.Diagnose" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialisme">
+              <PropertyRef Name="SpecialismeCode" />
+              <PropertyRef Name="Versie" />
+            </Principal>
+            <Dependent Role="Diagnose">
+              <PropertyRef Name="SpecialismeCode" />
+              <PropertyRef Name="Versie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zorgactiviteit_Zorgprofielklasse">
+          <End Role="Zorgprofielklasse" Type="Self.Zorgprofielklasse" Multiplicity="1" />
+          <End Role="Zorgactiviteit" Type="Self.Zorgactiviteit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zorgprofielklasse">
+              <PropertyRef Name="ZorgprofielklasseCode" />
+              <PropertyRef Name="Versie" />
+            </Principal>
+            <Dependent Role="Zorgactiviteit">
+              <PropertyRef Name="ZorgprofielklasseCode" />
+              <PropertyRef Name="Versie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DataModelStoreContainer">
+          <EntitySet Name="DbcOverzicht" EntityType="Self.DbcOverzicht" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DbcProfiel" EntityType="Self.DbcProfiel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Diagnose" EntityType="Self.Diagnose" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Specialisme" EntityType="Self.Specialisme" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zorgactiviteit" EntityType="Self.Zorgactiviteit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zorgproduct" EntityType="Self.Zorgproduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zorgprofielklasse" EntityType="Self.Zorgprofielklasse" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DbcOverzicht_Diagnose" Association="Self.FK_DbcOverzicht_Diagnose">
+            <End Role="Diagnose" EntitySet="Diagnose" />
+            <End Role="DbcOverzicht" EntitySet="DbcOverzicht" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DbcOverzicht_Specialisme" Association="Self.FK_DbcOverzicht_Specialisme">
+            <End Role="Specialisme" EntitySet="Specialisme" />
+            <End Role="DbcOverzicht" EntitySet="DbcOverzicht" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DbcOverzicht_Zorgproduct" Association="Self.FK_DbcOverzicht_Zorgproduct">
+            <End Role="Zorgproduct" EntitySet="Zorgproduct" />
+            <End Role="DbcOverzicht" EntitySet="DbcOverzicht" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DbcProfiel_Diagnose" Association="Self.FK_DbcProfiel_Diagnose">
+            <End Role="Diagnose" EntitySet="Diagnose" />
+            <End Role="DbcProfiel" EntitySet="DbcProfiel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DbcProfiel_Specialisme" Association="Self.FK_DbcProfiel_Specialisme">
+            <End Role="Specialisme" EntitySet="Specialisme" />
+            <End Role="DbcProfiel" EntitySet="DbcProfiel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DbcProfiel_Zorgactiviteit" Association="Self.FK_DbcProfiel_Zorgactiviteit">
+            <End Role="Zorgactiviteit" EntitySet="Zorgactiviteit" />
+            <End Role="DbcProfiel" EntitySet="DbcProfiel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DbcProfiel_Zorgproduct" Association="Self.FK_DbcProfiel_Zorgproduct">
+            <End Role="Zorgproduct" EntitySet="Zorgproduct" />
+            <End Role="DbcProfiel" EntitySet="DbcProfiel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diagnose_Specialisme" Association="Self.FK_Diagnose_Specialisme">
+            <End Role="Specialisme" EntitySet="Specialisme" />
+            <End Role="Diagnose" EntitySet="Diagnose" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zorgactiviteit_Zorgprofielklasse" Association="Self.FK_Zorgactiviteit_Zorgprofielklasse">
+            <End Role="Zorgprofielklasse" EntitySet="Zorgprofielklasse" />
+            <End Role="Zorgactiviteit" EntitySet="Zorgactiviteit" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DbcOverzicht">
+          <Key>
+            <PropertyRef Name="Jaar" />
+            <PropertyRef Name="SpecialismeCode" />
+            <PropertyRef Name="DiagnoseCode" />
+            <PropertyRef Name="ZorgproductCode" />
+            <PropertyRef Name="Versie" />
+          </Key>
+          <Property Name="Jaar" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SpecialismeCode" Type="Int16" Nullable="false" />
+          <Property Name="PatientenPerSpecialisme" Type="Int32" Nullable="false" />
+          <Property Name="SubtrajectenPerSpecialisme" Type="Int32" Nullable="false" />
+          <Property Name="DiagnoseCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PatientenPerDiagnose" Type="Int32" Nullable="false" />
+          <Property Name="SubtrajectenPerDiagnose" Type="Int32" Nullable="false" />
+          <Property Name="ZorgproductCode" Type="Int16" Nullable="false" />
+          <Property Name="PatientenPerZorgproduct" Type="Int32" Nullable="false" />
+          <Property Name="SubtrajectenPerZorgproduct" Type="Int32" Nullable="false" />
+          <Property Name="Verkoopprijs" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Peildatum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Bestandsdatum" Type="DateTime" Precision="0" />
+          <Property Name="Versie" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Diagnose" Relationship="Self.FK_DbcOverzicht_Diagnose" FromRole="DbcOverzicht" ToRole="Diagnose" />
+          <NavigationProperty Name="Specialisme" Relationship="Self.FK_DbcOverzicht_Specialisme" FromRole="DbcOverzicht" ToRole="Specialisme" />
+          <NavigationProperty Name="Zorgproduct" Relationship="Self.FK_DbcOverzicht_Zorgproduct" FromRole="DbcOverzicht" ToRole="Zorgproduct" />
+        </EntityType>
+        <EntityType Name="DbcProfiel">
+          <Key>
+            <PropertyRef Name="Jaar" />
+            <PropertyRef Name="SpecialismeCode" />
+            <PropertyRef Name="DiagnoseCode" />
+            <PropertyRef Name="ZorgproductCode" />
+            <PropertyRef Name="ZorgactiviteitCode" />
+            <PropertyRef Name="Versie" />
+          </Key>
+          <Property Name="Jaar" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SpecialismeCode" Type="Int16" Nullable="false" />
+          <Property Name="DiagnoseCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ZorgproductCode" Type="Int16" Nullable="false" />
+          <Property Name="Patienten" Type="Int32" Nullable="false" />
+          <Property Name="Subtrajecten" Type="Int32" Nullable="false" />
+          <Property Name="ZorgactiviteitCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Zorgactiviteiten" Type="Int32" Nullable="false" />
+          <Property Name="Peildatum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Bestandsdatum" Type="DateTime" Precision="0" />
+          <Property Name="Versie" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Diagnose" Relationship="Self.FK_DbcProfiel_Diagnose" FromRole="DbcProfiel" ToRole="Diagnose" />
+          <NavigationProperty Name="Specialisme" Relationship="Self.FK_DbcProfiel_Specialisme" FromRole="DbcProfiel" ToRole="Specialisme" />
+          <NavigationProperty Name="Zorgactiviteit" Relationship="Self.FK_DbcProfiel_Zorgactiviteit" FromRole="DbcProfiel" ToRole="Zorgactiviteit" />
+          <NavigationProperty Name="Zorgproduct" Relationship="Self.FK_DbcProfiel_Zorgproduct" FromRole="DbcProfiel" ToRole="Zorgproduct" />
+        </EntityType>
+        <EntityType Name="Diagnose">
+          <Key>
+            <PropertyRef Name="DiagnoseCode" />
+            <PropertyRef Name="SpecialismeCode" />
+            <PropertyRef Name="Versie" />
+          </Key>
+          <Property Name="DiagnoseCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SpecialismeCode" Type="Int16" Nullable="false" />
+          <Property Name="Omschrijving" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Peildatum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Bestandsdatum" Type="DateTime" Precision="0" />
+          <Property Name="Versie" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DbcOverzichts" Relationship="Self.FK_DbcOverzicht_Diagnose" FromRole="Diagnose" ToRole="DbcOverzicht" />
+          <NavigationProperty Name="DbcProfiels" Relationship="Self.FK_DbcProfiel_Diagnose" FromRole="Diagnose" ToRole="DbcProfiel" />
+          <NavigationProperty Name="Specialisme" Relationship="Self.FK_Diagnose_Specialisme" FromRole="Diagnose" ToRole="Specialisme" />
+        </EntityType>
+        <EntityType Name="Specialisme">
+          <Key>
+            <PropertyRef Name="SpecialismeCode" />
+            <PropertyRef Name="Versie" />
+          </Key>
+          <Property Name="SpecialismeCode" Type="Int16" Nullable="false" />
+          <Property Name="Omschrijving" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Peildatum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Bestandsdatum" Type="DateTime" Precision="0" />
+          <Property Name="Versie" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DbcOverzichts" Relationship="Self.FK_DbcOverzicht_Specialisme" FromRole="Specialisme" ToRole="DbcOverzicht" />
+          <NavigationProperty Name="DbcProfiels" Relationship="Self.FK_DbcProfiel_Specialisme" FromRole="Specialisme" ToRole="DbcProfiel" />
+          <NavigationProperty Name="Diagnoses" Relationship="Self.FK_Diagnose_Specialisme" FromRole="Specialisme" ToRole="Diagnose" />
+        </EntityType>
+        <EntityType Name="Zorgactiviteit">
+          <Key>
+            <PropertyRef Name="ZorgactiviteitCode" />
+            <PropertyRef Name="Versie" />
+          </Key>
+          <Property Name="ZorgactiviteitCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Omschrijving" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ZorgprofielklasseCode" Type="Int16" Nullable="false" />
+          <Property Name="Peildatum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Bestandsdatum" Type="DateTime" Precision="0" />
+          <Property Name="Versie" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DbcProfiels" Relationship="Self.FK_DbcProfiel_Zorgactiviteit" FromRole="Zorgactiviteit" ToRole="DbcProfiel" />
+          <NavigationProperty Name="Zorgprofielklasse" Relationship="Self.FK_Zorgactiviteit_Zorgprofielklasse" FromRole="Zorgactiviteit" ToRole="Zorgprofielklasse" />
+        </EntityType>
+        <EntityType Name="Zorgproduct">
+          <Key>
+            <PropertyRef Name="ZorgproductCode" />
+            <PropertyRef Name="Versie" />
+          </Key>
+          <Property Name="ZorgproductCode" Type="Int16" Nullable="false" />
+          <Property Name="OmschrijvingLatijn" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OmschrijvingConsument" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeclaratiecodeVerzekerd" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeclaratiecodeOnverzekerd" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Peildatum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Bestandsdatum" Type="DateTime" Precision="0" />
+          <Property Name="Versie" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DbcOverzichts" Relationship="Self.FK_DbcOverzicht_Zorgproduct" FromRole="Zorgproduct" ToRole="DbcOverzicht" />
+          <NavigationProperty Name="DbcProfiels" Relationship="Self.FK_DbcProfiel_Zorgproduct" FromRole="Zorgproduct" ToRole="DbcProfiel" />
+        </EntityType>
+        <EntityType Name="Zorgprofielklasse">
+          <Key>
+            <PropertyRef Name="ZorgprofielklasseCode" />
+            <PropertyRef Name="Versie" />
+          </Key>
+          <Property Name="ZorgprofielklasseCode" Type="Int16" Nullable="false" />
+          <Property Name="Omschrijving" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Versie" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Zorgactiviteits" Relationship="Self.FK_Zorgactiviteit_Zorgprofielklasse" FromRole="Zorgprofielklasse" ToRole="Zorgactiviteit" />
+        </EntityType>
+        <Association Name="FK_DbcOverzicht_Diagnose">
+          <End Role="Diagnose" Type="Self.Diagnose" Multiplicity="1" />
+          <End Role="DbcOverzicht" Type="Self.DbcOverzicht" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnose">
+              <PropertyRef Name="DiagnoseCode" />
+              <PropertyRef Name="SpecialismeCode" />
+              <PropertyRef Name="Versie" />
+            </Principal>
+            <Dependent Role="DbcOverzicht">
+              <PropertyRef Name="DiagnoseCode" />
+              <PropertyRef Name="SpecialismeCode" />
+              <PropertyRef Name="Versie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DbcOverzicht_Specialisme">
+          <End Role="Specialisme" Type="Self.Specialisme" Multiplicity="1" />
+          <End Role="DbcOverzicht" Type="Self.DbcOverzicht" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialisme">
+              <PropertyRef Name="SpecialismeCode" />
+              <PropertyRef Name="Versie" />
+            </Principal>
+            <Dependent Role="DbcOverzicht">
+              <PropertyRef Name="SpecialismeCode" />
+              <PropertyRef Name="Versie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DbcOverzicht_Zorgproduct">
+          <End Role="Zorgproduct" Type="Self.Zorgproduct" Multiplicity="1" />
+          <End Role="DbcOverzicht" Type="Self.DbcOverzicht" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zorgproduct">
+              <PropertyRef Name="ZorgproductCode" />
+              <PropertyRef Name="Versie" />
+            </Principal>
+            <Dependent Role="DbcOverzicht">
+              <PropertyRef Name="ZorgproductCode" />
+              <PropertyRef Name="Versie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DbcProfiel_Diagnose">
+          <End Role="Diagnose" Type="Self.Diagnose" Multiplicity="1" />
+          <End Role="DbcProfiel" Type="Self.DbcProfiel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnose">
+              <PropertyRef Name="DiagnoseCode" />
+              <PropertyRef Name="SpecialismeCode" />
+              <PropertyRef Name="Versie" />
+            </Principal>
+            <Dependent Role="DbcProfiel">
+              <PropertyRef Name="DiagnoseCode" />
+              <PropertyRef Name="SpecialismeCode" />
+              <PropertyRef Name="Versie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DbcProfiel_Specialisme">
+          <End Role="Specialisme" Type="Self.Specialisme" Multiplicity="1" />
+          <End Role="DbcProfiel" Type="Self.DbcProfiel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialisme">
+              <PropertyRef Name="SpecialismeCode" />
+              <PropertyRef Name="Versie" />
+            </Principal>
+            <Dependent Role="DbcProfiel">
+              <PropertyRef Name="SpecialismeCode" />
+              <PropertyRef Name="Versie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DbcProfiel_Zorgactiviteit">
+          <End Role="Zorgactiviteit" Type="Self.Zorgactiviteit" Multiplicity="1" />
+          <End Role="DbcProfiel" Type="Self.DbcProfiel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zorgactiviteit">
+              <PropertyRef Name="ZorgactiviteitCode" />
+              <PropertyRef Name="Versie" />
+            </Principal>
+            <Dependent Role="DbcProfiel">
+              <PropertyRef Name="ZorgactiviteitCode" />
+              <PropertyRef Name="Versie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DbcProfiel_Zorgproduct">
+          <End Role="Zorgproduct" Type="Self.Zorgproduct" Multiplicity="1" />
+          <End Role="DbcProfiel" Type="Self.DbcProfiel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zorgproduct">
+              <PropertyRef Name="ZorgproductCode" />
+              <PropertyRef Name="Versie" />
+            </Principal>
+            <Dependent Role="DbcProfiel">
+              <PropertyRef Name="ZorgproductCode" />
+              <PropertyRef Name="Versie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diagnose_Specialisme">
+          <End Role="Specialisme" Type="Self.Specialisme" Multiplicity="1" />
+          <End Role="Diagnose" Type="Self.Diagnose" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialisme">
+              <PropertyRef Name="SpecialismeCode" />
+              <PropertyRef Name="Versie" />
+            </Principal>
+            <Dependent Role="Diagnose">
+              <PropertyRef Name="SpecialismeCode" />
+              <PropertyRef Name="Versie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zorgactiviteit_Zorgprofielklasse">
+          <End Role="Zorgprofielklasse" Type="Self.Zorgprofielklasse" Multiplicity="1" />
+          <End Role="Zorgactiviteit" Type="Self.Zorgactiviteit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zorgprofielklasse">
+              <PropertyRef Name="ZorgprofielklasseCode" />
+              <PropertyRef Name="Versie" />
+            </Principal>
+            <Dependent Role="Zorgactiviteit">
+              <PropertyRef Name="ZorgprofielklasseCode" />
+              <PropertyRef Name="Versie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DbcOverzichts" EntityType="Self.DbcOverzicht" />
+          <EntitySet Name="DbcProfiels" EntityType="Self.DbcProfiel" />
+          <EntitySet Name="Diagnoses" EntityType="Self.Diagnose" />
+          <EntitySet Name="Specialismes" EntityType="Self.Specialisme" />
+          <EntitySet Name="Zorgactiviteits" EntityType="Self.Zorgactiviteit" />
+          <EntitySet Name="Zorgproducts" EntityType="Self.Zorgproduct" />
+          <EntitySet Name="Zorgprofielklasses" EntityType="Self.Zorgprofielklasse" />
+          <AssociationSet Name="FK_DbcOverzicht_Diagnose" Association="Self.FK_DbcOverzicht_Diagnose">
+            <End Role="Diagnose" EntitySet="Diagnoses" />
+            <End Role="DbcOverzicht" EntitySet="DbcOverzichts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DbcOverzicht_Specialisme" Association="Self.FK_DbcOverzicht_Specialisme">
+            <End Role="Specialisme" EntitySet="Specialismes" />
+            <End Role="DbcOverzicht" EntitySet="DbcOverzichts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DbcOverzicht_Zorgproduct" Association="Self.FK_DbcOverzicht_Zorgproduct">
+            <End Role="Zorgproduct" EntitySet="Zorgproducts" />
+            <End Role="DbcOverzicht" EntitySet="DbcOverzichts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DbcProfiel_Diagnose" Association="Self.FK_DbcProfiel_Diagnose">
+            <End Role="Diagnose" EntitySet="Diagnoses" />
+            <End Role="DbcProfiel" EntitySet="DbcProfiels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DbcProfiel_Specialisme" Association="Self.FK_DbcProfiel_Specialisme">
+            <End Role="Specialisme" EntitySet="Specialismes" />
+            <End Role="DbcProfiel" EntitySet="DbcProfiels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DbcProfiel_Zorgactiviteit" Association="Self.FK_DbcProfiel_Zorgactiviteit">
+            <End Role="Zorgactiviteit" EntitySet="Zorgactiviteits" />
+            <End Role="DbcProfiel" EntitySet="DbcProfiels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DbcProfiel_Zorgproduct" Association="Self.FK_DbcProfiel_Zorgproduct">
+            <End Role="Zorgproduct" EntitySet="Zorgproducts" />
+            <End Role="DbcProfiel" EntitySet="DbcProfiels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diagnose_Specialisme" Association="Self.FK_Diagnose_Specialisme">
+            <End Role="Specialisme" EntitySet="Specialismes" />
+            <End Role="Diagnose" EntitySet="Diagnoses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zorgactiviteit_Zorgprofielklasse" Association="Self.FK_Zorgactiviteit_Zorgprofielklasse">
+            <End Role="Zorgprofielklasse" EntitySet="Zorgprofielklasses" />
+            <End Role="Zorgactiviteit" EntitySet="Zorgactiviteits" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DataModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="DbcOverzichts">
+            <EntityTypeMapping TypeName="DataModel.DbcOverzicht">
+              <MappingFragment StoreEntitySet="DbcOverzicht">
+                <ScalarProperty Name="Jaar" ColumnName="Jaar" />
+                <ScalarProperty Name="SpecialismeCode" ColumnName="SpecialismeCode" />
+                <ScalarProperty Name="PatientenPerSpecialisme" ColumnName="PatientenPerSpecialisme" />
+                <ScalarProperty Name="SubtrajectenPerSpecialisme" ColumnName="SubtrajectenPerSpecialisme" />
+                <ScalarProperty Name="DiagnoseCode" ColumnName="DiagnoseCode" />
+                <ScalarProperty Name="PatientenPerDiagnose" ColumnName="PatientenPerDiagnose" />
+                <ScalarProperty Name="SubtrajectenPerDiagnose" ColumnName="SubtrajectenPerDiagnose" />
+                <ScalarProperty Name="ZorgproductCode" ColumnName="ZorgproductCode" />
+                <ScalarProperty Name="PatientenPerZorgproduct" ColumnName="PatientenPerZorgproduct" />
+                <ScalarProperty Name="SubtrajectenPerZorgproduct" ColumnName="SubtrajectenPerZorgproduct" />
+                <ScalarProperty Name="Verkoopprijs" ColumnName="Verkoopprijs" />
+                <ScalarProperty Name="Peildatum" ColumnName="Peildatum" />
+                <ScalarProperty Name="Bestandsdatum" ColumnName="Bestandsdatum" />
+                <ScalarProperty Name="Versie" ColumnName="Versie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DbcProfiels">
+            <EntityTypeMapping TypeName="DataModel.DbcProfiel">
+              <MappingFragment StoreEntitySet="DbcProfiel">
+                <ScalarProperty Name="Jaar" ColumnName="Jaar" />
+                <ScalarProperty Name="SpecialismeCode" ColumnName="SpecialismeCode" />
+                <ScalarProperty Name="DiagnoseCode" ColumnName="DiagnoseCode" />
+                <ScalarProperty Name="ZorgproductCode" ColumnName="ZorgproductCode" />
+                <ScalarProperty Name="Patienten" ColumnName="Patienten" />
+                <ScalarProperty Name="Subtrajecten" ColumnName="Subtrajecten" />
+                <ScalarProperty Name="ZorgactiviteitCode" ColumnName="ZorgactiviteitCode" />
+                <ScalarProperty Name="Zorgactiviteiten" ColumnName="Zorgactiviteiten" />
+                <ScalarProperty Name="Peildatum" ColumnName="Peildatum" />
+                <ScalarProperty Name="Bestandsdatum" ColumnName="Bestandsdatum" />
+                <ScalarProperty Name="Versie" ColumnName="Versie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Diagnoses">
+            <EntityTypeMapping TypeName="DataModel.Diagnose">
+              <MappingFragment StoreEntitySet="Diagnose">
+                <ScalarProperty Name="DiagnoseCode" ColumnName="DiagnoseCode" />
+                <ScalarProperty Name="SpecialismeCode" ColumnName="SpecialismeCode" />
+                <ScalarProperty Name="Omschrijving" ColumnName="Omschrijving" />
+                <ScalarProperty Name="Peildatum" ColumnName="Peildatum" />
+                <ScalarProperty Name="Bestandsdatum" ColumnName="Bestandsdatum" />
+                <ScalarProperty Name="Versie" ColumnName="Versie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Specialismes">
+            <EntityTypeMapping TypeName="DataModel.Specialisme">
+              <MappingFragment StoreEntitySet="Specialisme">
+                <ScalarProperty Name="SpecialismeCode" ColumnName="SpecialismeCode" />
+                <ScalarProperty Name="Omschrijving" ColumnName="Omschrijving" />
+                <ScalarProperty Name="Peildatum" ColumnName="Peildatum" />
+                <ScalarProperty Name="Bestandsdatum" ColumnName="Bestandsdatum" />
+                <ScalarProperty Name="Versie" ColumnName="Versie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zorgactiviteits">
+            <EntityTypeMapping TypeName="DataModel.Zorgactiviteit">
+              <MappingFragment StoreEntitySet="Zorgactiviteit">
+                <ScalarProperty Name="ZorgactiviteitCode" ColumnName="ZorgactiviteitCode" />
+                <ScalarProperty Name="Omschrijving" ColumnName="Omschrijving" />
+                <ScalarProperty Name="ZorgprofielklasseCode" ColumnName="ZorgprofielklasseCode" />
+                <ScalarProperty Name="Peildatum" ColumnName="Peildatum" />
+                <ScalarProperty Name="Bestandsdatum" ColumnName="Bestandsdatum" />
+                <ScalarProperty Name="Versie" ColumnName="Versie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zorgproducts">
+            <EntityTypeMapping TypeName="DataModel.Zorgproduct">
+              <MappingFragment StoreEntitySet="Zorgproduct">
+                <ScalarProperty Name="ZorgproductCode" ColumnName="ZorgproductCode" />
+                <ScalarProperty Name="OmschrijvingLatijn" ColumnName="OmschrijvingLatijn" />
+                <ScalarProperty Name="OmschrijvingConsument" ColumnName="OmschrijvingConsument" />
+                <ScalarProperty Name="DeclaratiecodeVerzekerd" ColumnName="DeclaratiecodeVerzekerd" />
+                <ScalarProperty Name="DeclaratiecodeOnverzekerd" ColumnName="DeclaratiecodeOnverzekerd" />
+                <ScalarProperty Name="Peildatum" ColumnName="Peildatum" />
+                <ScalarProperty Name="Bestandsdatum" ColumnName="Bestandsdatum" />
+                <ScalarProperty Name="Versie" ColumnName="Versie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zorgprofielklasses">
+            <EntityTypeMapping TypeName="DataModel.Zorgprofielklasse">
+              <MappingFragment StoreEntitySet="Zorgprofielklasse">
+                <ScalarProperty Name="ZorgprofielklasseCode" ColumnName="ZorgprofielklasseCode" />
+                <ScalarProperty Name="Omschrijving" ColumnName="Omschrijving" />
+                <ScalarProperty Name="Versie" ColumnName="Versie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

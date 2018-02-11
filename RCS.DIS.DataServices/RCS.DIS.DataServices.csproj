@@ -79,6 +79,7 @@
       <DependentUpon>DataModel.edmx</DependentUpon>
       <LastGenOutput>DataModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Feeding\FeedService.svc" />
     <Content Include="Service1.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -107,6 +108,10 @@
     <Compile Include="DataModel\Diagnose.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+      <Compile Include="Feeding\FeedService.svc.cs">
+          <DependentUpon>FeedService.svc</DependentUpon>
+      </Compile>
+    <Compile Include="Feeding\IFeedService.cs" />
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
     </Compile>

@@ -80,7 +80,6 @@
       <LastGenOutput>DataModel.cs</LastGenOutput>
     </Content>
     <Content Include="Feeding\FeedService.svc" />
-    <Content Include="Service1.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -108,14 +107,10 @@
     <Compile Include="DataModel\Diagnose.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-      <Compile Include="Feeding\FeedService.svc.cs">
-          <DependentUpon>FeedService.svc</DependentUpon>
-      </Compile>
-    <Compile Include="Feeding\IFeedService.cs" />
-    <Compile Include="Service1.svc.cs">
-      <DependentUpon>Service1.svc</DependentUpon>
+    <Compile Include="Feeding\FeedService.svc.cs">
+      <DependentUpon>FeedService.svc</DependentUpon>
     </Compile>
-    <Compile Include="IService1.cs" />
+    <Compile Include="Feeding\IFeedService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataModel\Specialisme.cs">
       <DependentUpon>DataModel.tt</DependentUpon>

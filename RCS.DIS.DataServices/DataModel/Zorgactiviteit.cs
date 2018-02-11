@@ -7,24 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RCS.DIS.DataServices
+namespace RCS.DIS.DataServices.DataModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Zorgprofielklasse
+    public partial class Zorgactiviteit
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Zorgprofielklasse()
+        public Zorgactiviteit()
         {
-            this.Zorgactiviteits = new HashSet<Zorgactiviteit>();
+            this.DbcProfiels = new HashSet<DbcProfiel>();
         }
     
-        public short ZorgprofielklasseCode { get; set; }
+        public string ZorgactiviteitCode { get; set; }
         public string Omschrijving { get; set; }
+        public short ZorgprofielklasseCode { get; set; }
+        public System.DateTime Peildatum { get; set; }
+        public Nullable<System.DateTime> Bestandsdatum { get; set; }
         public string Versie { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Zorgactiviteit> Zorgactiviteits { get; set; }
+        public virtual ICollection<DbcProfiel> DbcProfiels { get; set; }
+        public virtual Zorgprofielklasse Zorgprofielklasse { get; set; }
     }
 }

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RCS.DIS.DataServices
+namespace RCS.DIS.DataServices.DataModel
 {
     using System;
     using System.Collections.Generic;

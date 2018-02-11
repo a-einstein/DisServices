@@ -7,25 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RCS.DIS.DataServices
+namespace RCS.DIS.DataServices.DataModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Zorgproduct
+    public partial class Specialisme
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Zorgproduct()
+        public Specialisme()
         {
             this.DbcOverzichts = new HashSet<DbcOverzicht>();
             this.DbcProfiels = new HashSet<DbcProfiel>();
+            this.Diagnoses = new HashSet<Diagnose>();
         }
     
-        public short ZorgproductCode { get; set; }
-        public string OmschrijvingLatijn { get; set; }
-        public string OmschrijvingConsument { get; set; }
-        public string DeclaratiecodeVerzekerd { get; set; }
-        public string DeclaratiecodeOnverzekerd { get; set; }
+        public short SpecialismeCode { get; set; }
+        public string Omschrijving { get; set; }
         public System.DateTime Peildatum { get; set; }
         public Nullable<System.DateTime> Bestandsdatum { get; set; }
         public string Versie { get; set; }
@@ -34,5 +32,7 @@ namespace RCS.DIS.DataServices
         public virtual ICollection<DbcOverzicht> DbcOverzichts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DbcProfiel> DbcProfiels { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Diagnose> Diagnoses { get; set; }
     }
 }

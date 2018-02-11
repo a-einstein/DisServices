@@ -15,13 +15,13 @@ namespace RCS.DIS.DataServices.DataModel
     public partial class DbcOverzicht
     {
         public System.DateTime Jaar { get; set; }
-        public short SpecialismeCode { get; set; }
+        public int SpecialismeCode { get; set; }
         public int PatientenPerSpecialisme { get; set; }
         public int SubtrajectenPerSpecialisme { get; set; }
         public string DiagnoseCode { get; set; }
         public int PatientenPerDiagnose { get; set; }
         public int SubtrajectenPerDiagnose { get; set; }
-        public short ZorgproductCode { get; set; }
+        public int ZorgproductCode { get; set; }
         public int PatientenPerZorgproduct { get; set; }
         public int SubtrajectenPerZorgproduct { get; set; }
         public Nullable<decimal> Verkoopprijs { get; set; }

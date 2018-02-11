@@ -14,13 +14,13 @@
             <PropertyRef Name="Versie" />
           </Key>
           <Property Name="Jaar" Type="date" Nullable="false" />
-          <Property Name="SpecialismeCode" Type="smallint" Nullable="false" />
+          <Property Name="SpecialismeCode" Type="int" Nullable="false" />
           <Property Name="PatientenPerSpecialisme" Type="int" Nullable="false" />
           <Property Name="SubtrajectenPerSpecialisme" Type="int" Nullable="false" />
           <Property Name="DiagnoseCode" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="PatientenPerDiagnose" Type="int" Nullable="false" />
           <Property Name="SubtrajectenPerDiagnose" Type="int" Nullable="false" />
-          <Property Name="ZorgproductCode" Type="smallint" Nullable="false" />
+          <Property Name="ZorgproductCode" Type="int" Nullable="false" />
           <Property Name="PatientenPerZorgproduct" Type="int" Nullable="false" />
           <Property Name="SubtrajectenPerZorgproduct" Type="int" Nullable="false" />
           <Property Name="Verkoopprijs" Type="money" />
@@ -38,9 +38,9 @@
             <PropertyRef Name="Versie" />
           </Key>
           <Property Name="Jaar" Type="date" Nullable="false" />
-          <Property Name="SpecialismeCode" Type="smallint" Nullable="false" />
+          <Property Name="SpecialismeCode" Type="int" Nullable="false" />
           <Property Name="DiagnoseCode" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="ZorgproductCode" Type="smallint" Nullable="false" />
+          <Property Name="ZorgproductCode" Type="int" Nullable="false" />
           <Property Name="Patienten" Type="int" Nullable="false" />
           <Property Name="Subtrajecten" Type="int" Nullable="false" />
           <Property Name="ZorgactiviteitCode" Type="nchar" MaxLength="10" Nullable="false" />
@@ -56,7 +56,7 @@
             <PropertyRef Name="Versie" />
           </Key>
           <Property Name="DiagnoseCode" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="SpecialismeCode" Type="smallint" Nullable="false" />
+          <Property Name="SpecialismeCode" Type="int" Nullable="false" />
           <Property Name="Omschrijving" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Peildatum" Type="date" Nullable="false" />
           <Property Name="Bestandsdatum" Type="date" />
@@ -67,7 +67,7 @@
             <PropertyRef Name="SpecialismeCode" />
             <PropertyRef Name="Versie" />
           </Key>
-          <Property Name="SpecialismeCode" Type="smallint" Nullable="false" />
+          <Property Name="SpecialismeCode" Type="int" Nullable="false" />
           <Property Name="Omschrijving" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Peildatum" Type="date" Nullable="false" />
           <Property Name="Bestandsdatum" Type="date" />
@@ -80,7 +80,7 @@
           </Key>
           <Property Name="ZorgactiviteitCode" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Omschrijving" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="ZorgprofielklasseCode" Type="smallint" Nullable="false" />
+          <Property Name="ZorgprofielklasseCode" Type="int" Nullable="false" />
           <Property Name="Peildatum" Type="date" Nullable="false" />
           <Property Name="Bestandsdatum" Type="date" />
           <Property Name="Versie" Type="nvarchar" MaxLength="10" Nullable="false" />
@@ -90,7 +90,7 @@
             <PropertyRef Name="ZorgproductCode" />
             <PropertyRef Name="Versie" />
           </Key>
-          <Property Name="ZorgproductCode" Type="smallint" Nullable="false" />
+          <Property Name="ZorgproductCode" Type="int" Nullable="false" />
           <Property Name="OmschrijvingLatijn" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="OmschrijvingConsument" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="DeclaratiecodeVerzekerd" Type="nvarchar" MaxLength="10" Nullable="false" />
@@ -104,7 +104,7 @@
             <PropertyRef Name="ZorgprofielklasseCode" />
             <PropertyRef Name="Versie" />
           </Key>
-          <Property Name="ZorgprofielklasseCode" Type="smallint" Nullable="false" />
+          <Property Name="ZorgprofielklasseCode" Type="int" Nullable="false" />
           <Property Name="Omschrijving" Type="nvarchar" MaxLength="200" />
           <Property Name="Versie" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
@@ -297,13 +297,13 @@
             <PropertyRef Name="Versie" />
           </Key>
           <Property Name="Jaar" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="SpecialismeCode" Type="Int16" Nullable="false" />
+          <Property Name="SpecialismeCode" Type="Int32" Nullable="false" />
           <Property Name="PatientenPerSpecialisme" Type="Int32" Nullable="false" />
           <Property Name="SubtrajectenPerSpecialisme" Type="Int32" Nullable="false" />
           <Property Name="DiagnoseCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PatientenPerDiagnose" Type="Int32" Nullable="false" />
           <Property Name="SubtrajectenPerDiagnose" Type="Int32" Nullable="false" />
-          <Property Name="ZorgproductCode" Type="Int16" Nullable="false" />
+          <Property Name="ZorgproductCode" Type="Int32" Nullable="false" />
           <Property Name="PatientenPerZorgproduct" Type="Int32" Nullable="false" />
           <Property Name="SubtrajectenPerZorgproduct" Type="Int32" Nullable="false" />
           <Property Name="Verkoopprijs" Type="Decimal" Precision="19" Scale="4" />
@@ -324,9 +324,9 @@
             <PropertyRef Name="Versie" />
           </Key>
           <Property Name="Jaar" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="SpecialismeCode" Type="Int16" Nullable="false" />
+          <Property Name="SpecialismeCode" Type="Int32" Nullable="false" />
           <Property Name="DiagnoseCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ZorgproductCode" Type="Int16" Nullable="false" />
+          <Property Name="ZorgproductCode" Type="Int32" Nullable="false" />
           <Property Name="Patienten" Type="Int32" Nullable="false" />
           <Property Name="Subtrajecten" Type="Int32" Nullable="false" />
           <Property Name="ZorgactiviteitCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
@@ -346,7 +346,7 @@
             <PropertyRef Name="Versie" />
           </Key>
           <Property Name="DiagnoseCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SpecialismeCode" Type="Int16" Nullable="false" />
+          <Property Name="SpecialismeCode" Type="Int32" Nullable="false" />
           <Property Name="Omschrijving" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Peildatum" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Bestandsdatum" Type="DateTime" Precision="0" />
@@ -360,7 +360,7 @@
             <PropertyRef Name="SpecialismeCode" />
             <PropertyRef Name="Versie" />
           </Key>
-          <Property Name="SpecialismeCode" Type="Int16" Nullable="false" />
+          <Property Name="SpecialismeCode" Type="Int32" Nullable="false" />
           <Property Name="Omschrijving" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Peildatum" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Bestandsdatum" Type="DateTime" Precision="0" />
@@ -376,7 +376,7 @@
           </Key>
           <Property Name="ZorgactiviteitCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Omschrijving" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ZorgprofielklasseCode" Type="Int16" Nullable="false" />
+          <Property Name="ZorgprofielklasseCode" Type="Int32" Nullable="false" />
           <Property Name="Peildatum" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Bestandsdatum" Type="DateTime" Precision="0" />
           <Property Name="Versie" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
@@ -388,7 +388,7 @@
             <PropertyRef Name="ZorgproductCode" />
             <PropertyRef Name="Versie" />
           </Key>
-          <Property Name="ZorgproductCode" Type="Int16" Nullable="false" />
+          <Property Name="ZorgproductCode" Type="Int32" Nullable="false" />
           <Property Name="OmschrijvingLatijn" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="OmschrijvingConsument" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DeclaratiecodeVerzekerd" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
@@ -404,7 +404,7 @@
             <PropertyRef Name="ZorgprofielklasseCode" />
             <PropertyRef Name="Versie" />
           </Key>
-          <Property Name="ZorgprofielklasseCode" Type="Int16" Nullable="false" />
+          <Property Name="ZorgprofielklasseCode" Type="Int32" Nullable="false" />
           <Property Name="Omschrijving" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Versie" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Zorgactiviteits" Relationship="Self.FK_Zorgactiviteit_Zorgprofielklasse" FromRole="Zorgprofielklasse" ToRole="Zorgactiviteit" />

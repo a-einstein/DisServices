@@ -71,8 +71,8 @@
   <ItemGroup>
     <Content Include="DataModel\DataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DataModel.Context.cs</LastGenOutput>
       <DependentUpon>DataModel.edmx</DependentUpon>
+      <LastGenOutput>DataModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="DataModel\DataModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -107,11 +107,6 @@
     <Compile Include="DataModel\Diagnose.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Feeding\FeedService.svc.cs">
-      <DependentUpon>FeedService.svc</DependentUpon>
-    </Compile>
-    <Compile Include="Feeding\IFeedService.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataModel\Specialisme.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
@@ -124,6 +119,11 @@
     <Compile Include="DataModel\Zorgprofielklasse.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Feeding\FeedService.svc.cs">
+      <DependentUpon>FeedService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Feeding\IFeedService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

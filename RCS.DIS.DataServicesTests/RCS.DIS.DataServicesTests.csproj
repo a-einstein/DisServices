@@ -63,7 +63,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="DataModel.Designer.cs">
+    <Compile Include="..\RCS.DIS.DataServices\DataModel\DataModel.Designer.cs">
+      <Link>DataModel.Designer.cs</Link>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModel.edmx</DependentUpon>
@@ -72,11 +73,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="DataModel.edmx">
+    <EntityDeploy Include="..\RCS.DIS.DataServices\DataModel\DataModel.edmx">
+      <Link>DataModel.edmx</Link>
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DataModel.edmx.diagram">
+    <None Include="..\RCS.DIS.DataServices\DataModel\DataModel.edmx.diagram">
+      <Link>DataModel.edmx.diagram</Link>
       <DependentUpon>DataModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />

@@ -20,7 +20,7 @@ namespace RCS.DIS.DataServices.DataModel
             this.Zorgactiviteits = new HashSet<Zorgactiviteit>();
         }
     
-        public short ZorgprofielklasseCode { get; set; }
+        public int ZorgprofielklasseCode { get; set; }
         public string Omschrijving { get; set; }
         public string Versie { get; set; }
     

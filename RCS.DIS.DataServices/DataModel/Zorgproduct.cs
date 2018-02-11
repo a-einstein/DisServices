@@ -21,7 +21,7 @@ namespace RCS.DIS.DataServices.DataModel
             this.DbcProfiels = new HashSet<DbcProfiel>();
         }
     
-        public short ZorgproductCode { get; set; }
+        public int ZorgproductCode { get; set; }
         public string OmschrijvingLatijn { get; set; }
         public string OmschrijvingConsument { get; set; }
         public string DeclaratiecodeVerzekerd { get; set; }

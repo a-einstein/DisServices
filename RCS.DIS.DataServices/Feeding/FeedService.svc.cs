@@ -4,18 +4,38 @@ namespace RCS.DIS.DataServices.Feeding
 {
     public class FeedService : IFeedService
     {
-        public int Insert(Zorgproduct entity)
+        public int CreateOrUpdate(Zorgproduct feedZorgproduct)
         {
-            int rowsAffected;
-
             using (var entities = new Entities())
             {
-                // TODO Test if already there and if Peildatum has changed. 
-                entities.Zorgproducts.Add(entity);
-                rowsAffected = entities.SaveChanges();
-            };
+                var foundZorgproduct = entities.Zorgproducts.Find(feedZorgproduct.Key());
 
-            return rowsAffected;
+                if (foundZorgproduct == null)
+                    entities.Zorgproducts.Add(feedZorgproduct);
+                else if (feedZorgproduct.Peildatum > foundZorgproduct.Peildatum)
+                    entities.Entry(foundZorgproduct).CurrentValues.SetValues(feedZorgproduct);
+
+                var rowsAffected = entities.SaveChanges();
+
+                return rowsAffected;
+            };
+        }
+
+        // Keep this outside the interface.
+        // Maybe moved and applied elsewhere too.
+        public int Delete(object[] key)
+        {
+            using (var entities = new Entities())
+            {
+                var foundZorgproduct = entities.Zorgproducts.Find(key);
+
+                if (foundZorgproduct != null)
+                    entities.Zorgproducts.Remove(foundZorgproduct);
+
+                var rowsAffected = entities.SaveChanges();
+
+                return rowsAffected;
+            };
         }
     }
 }

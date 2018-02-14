@@ -27,6 +27,7 @@
             };
         }
 
+        // Currently only for test purposes.
         public static int Delete(object[] key)
         {
             using (var entities = new Entities())

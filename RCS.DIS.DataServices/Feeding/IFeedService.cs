@@ -7,6 +7,9 @@ namespace RCS.DIS.DataServices.Feeding
     interface IFeedService
     {
         [OperationContract]
-        int CreateOrUpdate(Zorgproduct zorgproduct);
+        int ZorgproductCreateOrUpdate(Zorgproduct zorgproduct);
+
+        [OperationContract]
+        int SpecialismeCreateOrUpdate(Specialisme specialisme);
     }
 }

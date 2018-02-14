@@ -18,10 +18,10 @@ namespace RCS.DIS.DataServices.Feeding.Tests
             int rowsAffected = 0;
 
             // Assure object not present.
-            rowsAffected = feedService.Delete(zorgproduct.Key());
+            rowsAffected = Zorgproduct.Delete(zorgproduct.Key());
 
             // Should create.
-            rowsAffected = feedService.CreateOrUpdate(zorgproduct);
+            rowsAffected = feedService.ZorgproductCreateOrUpdate(zorgproduct);
 
             Assert.AreEqual(1, rowsAffected);
         }
@@ -34,13 +34,13 @@ namespace RCS.DIS.DataServices.Feeding.Tests
             int rowsAffected = 0;
 
             // Assure object is present.
-            rowsAffected = feedService.CreateOrUpdate(zorgproduct);
+            rowsAffected = feedService.ZorgproductCreateOrUpdate(zorgproduct);
 
             // Give newer date.
             zorgproduct.Peildatum = zorgproduct.Peildatum.AddDays(1);
 
             // Should update.
-            rowsAffected = feedService.CreateOrUpdate(zorgproduct);
+            rowsAffected = feedService.ZorgproductCreateOrUpdate(zorgproduct);
 
             Assert.AreEqual(1, rowsAffected);
         }
@@ -53,10 +53,10 @@ namespace RCS.DIS.DataServices.Feeding.Tests
             int rowsAffected = 0;
 
             // Assure object is present.
-            rowsAffected = feedService.CreateOrUpdate(zorgproduct);
+            rowsAffected = feedService.ZorgproductCreateOrUpdate(zorgproduct);
 
             // Should delete.
-            rowsAffected = feedService.Delete(zorgproduct.Key());
+            rowsAffected = Zorgproduct.Delete(zorgproduct.Key());
 
             Assert.AreEqual(1, rowsAffected);
         }

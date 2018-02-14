@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="DbcOverzicht">
           <Key>
             <PropertyRef Name="Jaar" />
@@ -13,7 +13,7 @@
             <PropertyRef Name="ZorgproductCode" />
             <PropertyRef Name="Versie" />
           </Key>
-          <Property Name="Jaar" Type="date" Nullable="false" />
+          <Property Name="Jaar" Type="smallint" Nullable="false" />
           <Property Name="SpecialismeCode" Type="int" Nullable="false" />
           <Property Name="PatientenPerSpecialisme" Type="int" Nullable="false" />
           <Property Name="SubtrajectenPerSpecialisme" Type="int" Nullable="false" />
@@ -37,7 +37,7 @@
             <PropertyRef Name="ZorgactiviteitCode" />
             <PropertyRef Name="Versie" />
           </Key>
-          <Property Name="Jaar" Type="date" Nullable="false" />
+          <Property Name="Jaar" Type="smallint" Nullable="false" />
           <Property Name="SpecialismeCode" Type="int" Nullable="false" />
           <Property Name="DiagnoseCode" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="ZorgproductCode" Type="int" Nullable="false" />
@@ -57,7 +57,7 @@
           </Key>
           <Property Name="DiagnoseCode" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="SpecialismeCode" Type="int" Nullable="false" />
-          <Property Name="Omschrijving" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Omschrijving" Type="nvarchar" MaxLength="200" />
           <Property Name="Peildatum" Type="date" Nullable="false" />
           <Property Name="Bestandsdatum" Type="date" />
           <Property Name="Versie" Type="nvarchar" MaxLength="10" Nullable="false" />
@@ -68,7 +68,7 @@
             <PropertyRef Name="Versie" />
           </Key>
           <Property Name="SpecialismeCode" Type="int" Nullable="false" />
-          <Property Name="Omschrijving" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Omschrijving" Type="nvarchar" MaxLength="200" />
           <Property Name="Peildatum" Type="date" Nullable="false" />
           <Property Name="Bestandsdatum" Type="date" />
           <Property Name="Versie" Type="nvarchar" MaxLength="10" Nullable="false" />
@@ -91,10 +91,10 @@
             <PropertyRef Name="Versie" />
           </Key>
           <Property Name="ZorgproductCode" Type="int" Nullable="false" />
-          <Property Name="OmschrijvingLatijn" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="OmschrijvingConsument" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="DeclaratiecodeVerzekerd" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="DeclaratiecodeOnverzekerd" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="OmschrijvingLatijn" Type="nvarchar" MaxLength="200" />
+          <Property Name="OmschrijvingConsument" Type="nvarchar" MaxLength="200" />
+          <Property Name="DeclaratiecodeVerzekerd" Type="nvarchar" MaxLength="10" />
+          <Property Name="DeclaratiecodeOnverzekerd" Type="nvarchar" MaxLength="10" />
           <Property Name="Peildatum" Type="date" Nullable="false" />
           <Property Name="Bestandsdatum" Type="date" />
           <Property Name="Versie" Type="nvarchar" MaxLength="10" Nullable="false" />
@@ -283,8 +283,7 @@
             <End Role="Zorgactiviteit" EntitySet="Zorgactiviteit" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -296,7 +295,7 @@
             <PropertyRef Name="ZorgproductCode" />
             <PropertyRef Name="Versie" />
           </Key>
-          <Property Name="Jaar" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Jaar" Type="Int16" Nullable="false" />
           <Property Name="SpecialismeCode" Type="Int32" Nullable="false" />
           <Property Name="PatientenPerSpecialisme" Type="Int32" Nullable="false" />
           <Property Name="SubtrajectenPerSpecialisme" Type="Int32" Nullable="false" />
@@ -323,7 +322,7 @@
             <PropertyRef Name="ZorgactiviteitCode" />
             <PropertyRef Name="Versie" />
           </Key>
-          <Property Name="Jaar" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Jaar" Type="Int16" Nullable="false" />
           <Property Name="SpecialismeCode" Type="Int32" Nullable="false" />
           <Property Name="DiagnoseCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ZorgproductCode" Type="Int32" Nullable="false" />
@@ -347,7 +346,7 @@
           </Key>
           <Property Name="DiagnoseCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SpecialismeCode" Type="Int32" Nullable="false" />
-          <Property Name="Omschrijving" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Omschrijving" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Peildatum" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Bestandsdatum" Type="DateTime" Precision="0" />
           <Property Name="Versie" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
@@ -361,7 +360,7 @@
             <PropertyRef Name="Versie" />
           </Key>
           <Property Name="SpecialismeCode" Type="Int32" Nullable="false" />
-          <Property Name="Omschrijving" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Omschrijving" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Peildatum" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Bestandsdatum" Type="DateTime" Precision="0" />
           <Property Name="Versie" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
@@ -389,10 +388,10 @@
             <PropertyRef Name="Versie" />
           </Key>
           <Property Name="ZorgproductCode" Type="Int32" Nullable="false" />
-          <Property Name="OmschrijvingLatijn" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="OmschrijvingConsument" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DeclaratiecodeVerzekerd" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DeclaratiecodeOnverzekerd" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OmschrijvingLatijn" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="OmschrijvingConsument" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DeclaratiecodeVerzekerd" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DeclaratiecodeOnverzekerd" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Peildatum" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Bestandsdatum" Type="DateTime" Precision="0" />
           <Property Name="Versie" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />

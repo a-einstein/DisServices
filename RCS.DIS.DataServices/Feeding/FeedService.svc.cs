@@ -4,6 +4,11 @@ namespace RCS.DIS.DataServices.Feeding
 {
     public class FeedService : IFeedService
     {
+        public int DbcOverzichtCreateOrUpdate(DbcOverzicht feedEntity)
+        {
+            return DbcOverzicht.CreateOrUpdate(feedEntity);
+        }
+
         public int DiagnoseCreateOrUpdate(Diagnose feedEntity)
         {
             return Diagnose.CreateOrUpdate(feedEntity);

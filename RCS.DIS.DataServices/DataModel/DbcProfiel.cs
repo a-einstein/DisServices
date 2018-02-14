@@ -14,7 +14,7 @@ namespace RCS.DIS.DataServices.DataModel
     
     public partial class DbcProfiel
     {
-        public System.DateTime Jaar { get; set; }
+        public short Jaar { get; set; }
         public int SpecialismeCode { get; set; }
         public string DiagnoseCode { get; set; }
         public int ZorgproductCode { get; set; }

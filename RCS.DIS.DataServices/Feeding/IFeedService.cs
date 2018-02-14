@@ -7,6 +7,9 @@ namespace RCS.DIS.DataServices.Feeding
     interface IFeedService
     {
         [OperationContract]
+        int DbcOverzichtCreateOrUpdate(DbcOverzicht entity);
+
+        [OperationContract]
         int DiagnoseCreateOrUpdate(Diagnose entity);
 
         [OperationContract]

@@ -15,7 +15,7 @@ namespace RCS.DIS.DataServices.DataModel
     public partial class DbcOverzicht
     {
         public short Jaar { get; set; }
-        public int SpecialismeCode { get; set; }
+        public string SpecialismeCode { get; set; }
         public int PatientenPerSpecialisme { get; set; }
         public int SubtrajectenPerSpecialisme { get; set; }
         public string DiagnoseCode { get; set; }

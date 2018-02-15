@@ -1,4 +1,6 @@
 ﻿using RCS.DIS.DataServices.DataModel;
+using System;
+using System.Diagnostics;
 
 namespace RCS.DIS.DataServices.Feeding
 {
@@ -6,32 +8,86 @@ namespace RCS.DIS.DataServices.Feeding
     {
         public int DbcOverzichtCreateOrUpdate(DbcOverzicht feedEntity)
         {
-            return DbcOverzicht.CreateOrUpdate(feedEntity);
+            try
+            {
+                return DbcOverzicht.CreateOrUpdate(feedEntity);
+            }
+            catch (Exception exception)
+            {
+                TraceException(exception);
+                return 0;
+            }
         }
 
         public int DiagnoseCreateOrUpdate(Diagnose feedEntity)
         {
-            return Diagnose.CreateOrUpdate(feedEntity);
+            try
+            {
+                return Diagnose.CreateOrUpdate(feedEntity);
+            }
+            catch (Exception exception)
+            {
+                TraceException(exception);
+                return 0;
+            }
         }
 
         public int SpecialismeCreateOrUpdate(Specialisme feedEntity)
         {
-            return Specialisme.CreateOrUpdate(feedEntity);
+            try
+            {
+                return Specialisme.CreateOrUpdate(feedEntity);
+            }
+            catch (Exception exception)
+            {
+                TraceException(exception);
+                return 0;
+            }
         }
 
         public int ZorgactiviteitCreateOrUpdate(Zorgactiviteit feedEntity)
         {
-            return Zorgactiviteit.CreateOrUpdate(feedEntity);
+            try
+            {
+                return Zorgactiviteit.CreateOrUpdate(feedEntity);
+            }
+            catch (Exception exception)
+            {
+                TraceException(exception);
+                return 0;
+            }
         }
 
         public int ZorgproductCreateOrUpdate(Zorgproduct feedEntity)
         {
-            return Zorgproduct.CreateOrUpdate(feedEntity);
+            try
+            {
+                return Zorgproduct.CreateOrUpdate(feedEntity);
+            }
+            catch (Exception exception)
+            {
+                TraceException(exception);
+                return 0;
+            }
         }
 
         public int ZorgprofielklasseCreateOrUpdate(Zorgprofielklasse feedEntity)
         {
-            return Zorgprofielklasse.CreateOrUpdate(feedEntity);
+            try
+            {
+                return Zorgprofielklasse.CreateOrUpdate(feedEntity);
+            }
+            catch (Exception exception)
+            {
+                TraceException(exception);
+                return 0;
+            }
+        }
+
+        private static void TraceException(Exception exception)
+        {
+            Trace.WriteLine(null);
+            Trace.WriteLine($"exception.Message = {exception.Message}");
         }
     }
 }

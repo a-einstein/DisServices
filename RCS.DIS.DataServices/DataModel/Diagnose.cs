@@ -22,7 +22,7 @@ namespace RCS.DIS.DataServices.DataModel
         }
     
         public string DiagnoseCode { get; set; }
-        public int SpecialismeCode { get; set; }
+        public string SpecialismeCode { get; set; }
         public string Omschrijving { get; set; }
         public System.DateTime Peildatum { get; set; }
         public Nullable<System.DateTime> Bestandsdatum { get; set; }

@@ -5,7 +5,11 @@
         public object[] Key()
         {
             // Note order is significant.
-            return new object[] { ZorgactiviteitCode, Versie };
+            return new object[]
+            {
+                ZorgactiviteitCode,
+                Versie
+            };
         }
 
         public static int CreateOrUpdate(Zorgactiviteit feedEntity)

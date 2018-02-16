@@ -12,6 +12,10 @@ namespace RCS.DIS.DataServices.Feeding
 
         [OperationContract]
         [TransactionFlow(TransactionFlowOption.Allowed)]
+        int DbcDbcProfielCreateOrUpdate(DbcProfiel entity);
+
+        [OperationContract]
+        [TransactionFlow(TransactionFlowOption.Allowed)]
         int DiagnoseCreateOrUpdate(Diagnose entity);
 
         [OperationContract]

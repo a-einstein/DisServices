@@ -5,10 +5,14 @@
         public object[] Key()
         {
             // Note order is significant.
-            return new object[] { SpecialismeCode, Versie };
+            return new object[]
+            {
+                SpecialismeCode,
+                Versie
+            };
         }
 
-        public  static int CreateOrUpdate(Specialisme feedEntity)
+        public static int CreateOrUpdate(Specialisme feedEntity)
         {
             using (var entities = new Entities())
             {

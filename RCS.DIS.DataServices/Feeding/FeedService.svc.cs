@@ -19,6 +19,19 @@ namespace RCS.DIS.DataServices.Feeding
             }
         }
 
+        public int DbcDbcProfielCreateOrUpdate(DbcProfiel feedEntity)
+        {
+            try
+            {
+                return DbcProfiel.CreateOrUpdate(feedEntity);
+            }
+            catch (Exception exception)
+            {
+                TraceException(exception);
+                return 0;
+            }
+        }
+
         public int DiagnoseCreateOrUpdate(Diagnose feedEntity)
         {
             try

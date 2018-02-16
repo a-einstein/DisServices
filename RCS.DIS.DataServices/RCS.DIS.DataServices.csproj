@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataModel\additions\DbcOverzicht.cs" />
+    <Compile Include="DataModel\additions\DbcProfiel.cs" />
     <Compile Include="DataModel\additions\Diagnose.cs" />
     <Compile Include="DataModel\additions\IEntity.cs" />
     <Compile Include="DataModel\additions\Specialisme.cs" />

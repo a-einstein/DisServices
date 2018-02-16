@@ -1,6 +1,6 @@
 ﻿namespace RCS.DIS.DataServices.DataModel
 {
-    public partial class DbcOverzicht : IEntity
+    public partial class DbcProfiel : IEntity
     {
         public object[] Key()
         {
@@ -11,18 +11,19 @@
                 SpecialismeCode,
                 DiagnoseCode,
                 ZorgproductCode,
+                ZorgactiviteitCode,
                 Versie
             };
         }
 
-        public static int CreateOrUpdate(DbcOverzicht feedEntity)
+        public static int CreateOrUpdate(DbcProfiel feedEntity)
         {
             using (var entities = new Entities())
             {
-                var foundEntity = entities.DbcOverzichts.Find(feedEntity.Key());
+                var foundEntity = entities.DbcProfiels.Find(feedEntity.Key());
 
                 if (foundEntity == null)
-                    entities.DbcOverzichts.Add(feedEntity);
+                    entities.DbcProfiels.Add(feedEntity);
                 else if (feedEntity.Peildatum > foundEntity.Peildatum)
                     entities.Entry(foundEntity).CurrentValues.SetValues(feedEntity);
 

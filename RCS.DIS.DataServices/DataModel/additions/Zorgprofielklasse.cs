@@ -5,7 +5,11 @@
         public object[] Key()
         {
             // Note order is significant.
-            return new object[] { ZorgprofielklasseCode, Versie };
+            return new object[]
+            {
+                ZorgprofielklasseCode,
+                Versie
+            };
         }
 
         public static int CreateOrUpdate(Zorgprofielklasse feedEntity)

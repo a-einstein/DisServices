@@ -5,7 +5,11 @@
         public object[] Key()
         {
             // Note order is significant.
-            return new object[] { ZorgproductCode, Versie };
+            return new object[]
+            {
+                ZorgproductCode,
+                Versie
+            };
         }
 
         // Would rather put this in interface, which is impossible.

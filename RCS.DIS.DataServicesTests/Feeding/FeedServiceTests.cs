@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RCS.DIS.DataServices.DataModel;
+using RCS.DIS.Services.DataModel;
 using System;
 
-namespace RCS.DIS.DataServices.Feeding.Tests
+namespace RCS.DIS.Services.Feeding.Tests
 {
     // HACK to to do initial test. It is depending on a data connection and changes the database.
     // Note that app.config is a renamed COPY of web.config, DataModel.edmx is a REFERENCE into the tested project, and that EF had to be referenced too.
@@ -72,7 +72,7 @@ namespace RCS.DIS.DataServices.Feeding.Tests
                 DeclaratiecodeOnverzekerd = "16B269",
                 Peildatum = new DateTime(2018, 1, 1),
                 Bestandsdatum = new DateTime(2018, 1, 15),
-                Versie = "1.0"
+                Versie = "Test 1.0"
             };
         }
     }

@@ -1,7 +1,7 @@
-﻿using RCS.DIS.DataServices.DataModel;
+﻿using RCS.DIS.Services.DataModel;
 using System.ServiceModel;
 
-namespace RCS.DIS.DataServices.Feeding
+namespace RCS.DIS.Services.Feeding
 {
     [ServiceContract]
     interface IFeedService

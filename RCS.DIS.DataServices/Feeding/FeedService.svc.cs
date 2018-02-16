@@ -1,8 +1,8 @@
-﻿using RCS.DIS.DataServices.DataModel;
+﻿using RCS.DIS.Services.DataModel;
 using System;
 using System.Diagnostics;
 
-namespace RCS.DIS.DataServices.Feeding
+namespace RCS.DIS.Services.Feeding
 {
     public class FeedService : IFeedService
     {

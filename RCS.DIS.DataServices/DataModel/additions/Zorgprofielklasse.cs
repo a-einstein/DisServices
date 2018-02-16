@@ -1,4 +1,4 @@
-﻿namespace RCS.DIS.DataServices.DataModel
+﻿namespace RCS.DIS.Services.DataModel
 {
     public partial class Zorgprofielklasse : IEntity
     {

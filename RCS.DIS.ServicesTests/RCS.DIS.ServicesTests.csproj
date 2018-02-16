@@ -63,7 +63,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="..\RCS.DIS.DataServices\DataModel\DataModel.Designer.cs">
+    <Compile Include="..\RCS.DIS.Services\DataModel\DataModel.Designer.cs">
       <Link>DataModel.Designer.cs</Link>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -73,12 +73,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="..\RCS.DIS.DataServices\DataModel\DataModel.edmx">
+    <EntityDeploy Include="..\RCS.DIS.Services\DataModel\DataModel.edmx">
       <Link>DataModel.edmx</Link>
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="..\RCS.DIS.DataServices\DataModel\DataModel.edmx.diagram">
+    <None Include="..\RCS.DIS.Services\DataModel\DataModel.edmx.diagram">
       <Link>DataModel.edmx.diagram</Link>
       <DependentUpon>DataModel.edmx</DependentUpon>
     </None>
@@ -88,7 +88,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RCS.DIS.DataServices\RCS.DIS.Services.csproj">
+    <ProjectReference Include="..\RCS.DIS.Services\RCS.DIS.Services.csproj">
       <Project>{E86B6C09-53AE-4903-AA90-B31427ECE09E}</Project>
       <Name>RCS.DIS.Services</Name>
     </ProjectReference>

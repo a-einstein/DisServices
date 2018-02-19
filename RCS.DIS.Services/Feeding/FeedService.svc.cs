@@ -1,10 +1,10 @@
-﻿using RCS.DIS.Services.DataModel;
+﻿using RCS.DIS.Services.Common;
+using RCS.DIS.Services.DataModel;
 using System;
-using System.Diagnostics;
 
 namespace RCS.DIS.Services.Feeding
 {
-    public class FeedService : IFeedService
+    public class FeedService : Service, IFeedService
     {
         public int DbcOverzichtCreateOrUpdate(DbcOverzicht feedEntity)
         {
@@ -95,12 +95,6 @@ namespace RCS.DIS.Services.Feeding
                 TraceException(exception);
                 return 0;
             }
-        }
-
-        private static void TraceException(Exception exception)
-        {
-            Trace.WriteLine(null);
-            Trace.WriteLine($"exception.Message = {exception.Message}");
         }
     }
 }

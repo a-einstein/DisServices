@@ -1,4 +1,6 @@
-﻿namespace RCS.DIS.Services.DataModel
+﻿using System.Linq;
+
+namespace RCS.DIS.Services.DataModel
 {
     public partial class Diagnose : IEntity
     {
@@ -13,6 +15,7 @@
             };
         }
 
+        // Would be candidate for an Interface, if statics were allowed.
         public static int CreateOrUpdate(Diagnose feedEntity)
         {
             using (var entities = new Entities())
@@ -27,6 +30,30 @@
                 var rowsAffected = entities.SaveChanges();
 
                 return rowsAffected;
+            };
+        }
+
+        // Would be candidate for an Interface, if statics were allowed.
+        public static int OmschrijvingContainsNumber(string searchString)
+        {
+            using (var entities = new Entities())
+            {
+                // TODO Check efficiency.
+                var result = entities.Diagnoses.Where(diagnose => diagnose.Omschrijving.Contains(searchString)).Count();
+
+                return result;
+            };
+        }
+
+        // Would be candidate for an Interface, if statics were allowed.
+        public static Diagnose[] OmschrijvingContainsEntities(string searchString)
+        {
+            using (var entities = new Entities())
+            {
+                // TODO Check efficiency.
+                var result = entities.Diagnoses.Where(diagnose => diagnose.Omschrijving.Contains(searchString)).ToArray<Diagnose>();
+
+                return result;
             };
         }
     }

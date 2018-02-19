@@ -1,5 +1,4 @@
-﻿using RCS.DIS.Services.DataModel;
-using System.Linq;
+﻿using RCS.DIS.Services.DTOs;
 using System.ServiceModel;
 
 namespace RCS.DIS.Services.Retrieving

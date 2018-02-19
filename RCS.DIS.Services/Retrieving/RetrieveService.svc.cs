@@ -1,5 +1,6 @@
-﻿using RCS.DIS.Services.Common;
-using RCS.DIS.Services.DataModel;
+﻿using AutoMapper;
+using RCS.DIS.Services.Common;
+using RCS.DIS.Services.DTOs;
 using System;
 using System.Linq;
 
@@ -7,11 +8,18 @@ namespace RCS.DIS.Services.Retrieving
 {
     public class RetrieveService : Service, IRetrieveService
     {
+        static RetrieveService()
+        {
+            // Turned out necessary to use DTOs to prevent serialization exception.
+            // Experimental use of AutoMapper.
+            Mapper.Initialize(configuration => { configuration.CreateMap<DataModel.Diagnose, Diagnose>(); });
+        }
+
         public int DiagnoseOmschrijvingContainsNumber(string searchString)
         {
             try
             {
-                return Diagnose.OmschrijvingContainsNumber(searchString);
+                return DataModel.Diagnose.OmschrijvingContainsNumber(searchString);
             }
             catch (Exception exception)
             {
@@ -24,7 +32,10 @@ namespace RCS.DIS.Services.Retrieving
         {
             try
             {
-                return Diagnose.OmschrijvingContainsEntities(searchString);
+                var entities = DataModel.Diagnose.OmschrijvingContainsEntities(searchString);
+                var dtos = entities.Select(entity => Mapper.Map<DTOs.Diagnose>(entity));
+
+                return dtos.ToArray();
             }
             catch (Exception exception)
             {

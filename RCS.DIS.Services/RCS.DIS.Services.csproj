@@ -42,6 +42,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -132,6 +135,13 @@
     <Compile Include="DataModel\Zorgprofielklasse.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DTOs\DbcOverzicht.cs" />
+    <Compile Include="DTOs\DbcProfiel.cs" />
+    <Compile Include="DTOs\Diagnose.cs" />
+    <Compile Include="DTOs\Specialisme.cs" />
+    <Compile Include="DTOs\Zorgactiviteit.cs" />
+    <Compile Include="DTOs\Zorgproduct.cs" />
+    <Compile Include="DTOs\Zorgprofielklasse.cs" />
     <Compile Include="Feeding\FeedService.svc.cs">
       <DependentUpon>FeedService.svc</DependentUpon>
     </Compile>
@@ -153,7 +163,9 @@
     <Content Include="DataModel\DataModel.edmx.diagram">
       <DependentUpon>DataModel.edmx</DependentUpon>
     </Content>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

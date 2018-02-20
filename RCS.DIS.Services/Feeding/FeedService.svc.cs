@@ -6,6 +6,11 @@ namespace RCS.DIS.Services.Feeding
 {
     public class FeedService : Service, IFeedService
     {
+        static FeedService()
+        {
+            SetupTracing(nameof(FeedService));
+        }
+
         public int DbcOverzichtCreateOrUpdate(DbcOverzicht feedEntity)
         {
             try

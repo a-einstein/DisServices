@@ -10,6 +10,8 @@ namespace RCS.DIS.Services.Retrieving
     {
         static RetrieveService()
         {
+            SetupTracing(nameof(RetrieveService));
+
             // Turned out necessary to use DTOs to prevent serialization exception.
             // Experimental use of AutoMapper.
             Mapper.Initialize(configuration => { configuration.CreateMap<DataModel.Diagnose, Diagnose>(); });
@@ -19,6 +21,7 @@ namespace RCS.DIS.Services.Retrieving
         {
             try
             {
+                throw new Exception();
                 return DataModel.Zorgprofielklasse.Versies();
             }
             catch (Exception exception)

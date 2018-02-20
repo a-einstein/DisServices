@@ -21,7 +21,6 @@ namespace RCS.DIS.Services.Retrieving
         {
             try
             {
-                throw new Exception();
                 return DataModel.Zorgprofielklasse.Versies();
             }
             catch (Exception exception)

@@ -15,6 +15,19 @@ namespace RCS.DIS.Services.Retrieving
             Mapper.Initialize(configuration => { configuration.CreateMap<DataModel.Diagnose, Diagnose>(); });
         }
 
+        public string[] Versies()
+        {
+            try
+            {
+                return DataModel.Zorgprofielklasse.Versies();
+            }
+            catch (Exception exception)
+            {
+                TraceException(exception);
+                return null;
+            }
+        }
+
         public int DiagnoseOmschrijvingContainsNumber(string searchString)
         {
             try

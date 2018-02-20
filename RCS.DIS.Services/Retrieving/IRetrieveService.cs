@@ -7,6 +7,9 @@ namespace RCS.DIS.Services.Retrieving
     public interface IRetrieveService
     {
         [OperationContract]
+        string[] Versies();
+
+        [OperationContract]
         int DiagnoseOmschrijvingContainsNumber(string searchString);
 
         [OperationContract]

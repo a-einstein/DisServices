@@ -1,4 +1,6 @@
-﻿namespace RCS.DIS.Services.DataModel
+﻿using System.Linq;
+
+namespace RCS.DIS.Services.DataModel
 {
     public partial class Zorgprofielklasse : IEntity
     {
@@ -14,17 +16,29 @@
 
         public static int CreateOrUpdate(Zorgprofielklasse feedEntity)
         {
-            using (var entities = new Entities())
+            using (var dbContext = new Entities())
             {
-                var foundEntity = entities.Zorgprofielklasses.Find(feedEntity.Key());
+                var foundEntity = dbContext.Zorgprofielklasses.Find(feedEntity.Key());
 
                 if (foundEntity == null)
-                    entities.Zorgprofielklasses.Add(feedEntity);
+                    dbContext.Zorgprofielklasses.Add(feedEntity);
                 // Note this does not take any update into consideration.
 
-                var rowsAffected = entities.SaveChanges();
+                var rowsAffected = dbContext.SaveChanges();
 
                 return rowsAffected;
+            };
+        }
+
+        // Arbitrarily collect the Versies here, being the largest table.
+        public static string[] Versies()
+        {
+            using (var dbContext = new Entities())
+            {
+                // TODO Check efficiency.
+                var entities = dbContext.Zorgprofielklasses.Select(entity => entity.Versie).Distinct().ToArray();
+
+                return entities;
             };
         }
     }

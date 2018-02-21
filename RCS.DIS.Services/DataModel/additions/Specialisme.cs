@@ -17,16 +17,16 @@ namespace RCS.DIS.Services.DataModel
 
         public static int CreateOrUpdate(Specialisme feedEntity)
         {
-            using (var entities = new Entities())
+            using (var dbContext = new Entities())
             {
-                var foundEntity = entities.Specialismes.Find(feedEntity.Key());
+                var foundEntity = dbContext.Specialismes.Find(feedEntity.Key());
 
                 if (foundEntity == null)
-                    entities.Specialismes.Add(feedEntity);
+                    dbContext.Specialismes.Add(feedEntity);
                 else if (feedEntity.Peildatum > foundEntity.Peildatum)
-                    entities.Entry(foundEntity).CurrentValues.SetValues(feedEntity);
+                    dbContext.Entry(foundEntity).CurrentValues.SetValues(feedEntity);
 
-                var rowsAffected = entities.SaveChanges();
+                var rowsAffected = dbContext.SaveChanges();
 
                 return rowsAffected;
             };
@@ -38,9 +38,9 @@ namespace RCS.DIS.Services.DataModel
         {
             using (var dbContext = new Entities())
             {
-                var entities = dbContext.Specialismes.Where(entity => entity.Omschrijving.Contains(searchString)).Count();
+                var result = dbContext.Specialismes.Where(entity => entity.Omschrijving.Contains(searchString)).Count();
 
-                return entities;
+                return result;
             };
         }
 
@@ -48,9 +48,9 @@ namespace RCS.DIS.Services.DataModel
         {
             using (var dbContext = new Entities())
             {
-                var entities = dbContext.Specialismes.Where(entity => entity.Omschrijving.Contains(searchString)).OrderBy(diagnose => diagnose.Omschrijving).ToArray();
+                var result = dbContext.Specialismes.Where(entity => entity.Omschrijving.Contains(searchString)).OrderBy(diagnose => diagnose.Omschrijving).ToArray();
 
-                return entities;
+                return result;
             };
         }
         #endregion

@@ -21,16 +21,16 @@ namespace RCS.DIS.Services.DataModel
 
         public static int CreateOrUpdate(DbcProfiel feedEntity)
         {
-            using (var entities = new Entities())
+            using (var dbContext = new Entities())
             {
-                var foundEntity = entities.DbcProfiels.Find(feedEntity.Key());
+                var foundEntity = dbContext.DbcProfiels.Find(feedEntity.Key());
 
                 if (foundEntity == null)
-                    entities.DbcProfiels.Add(feedEntity);
+                    dbContext.DbcProfiels.Add(feedEntity);
                 else if (feedEntity.Peildatum > foundEntity.Peildatum)
-                    entities.Entry(foundEntity).CurrentValues.SetValues(feedEntity);
+                    dbContext.Entry(foundEntity).CurrentValues.SetValues(feedEntity);
 
-                var rowsAffected = entities.SaveChanges();
+                var rowsAffected = dbContext.SaveChanges();
 
                 return rowsAffected;
             };
@@ -38,15 +38,27 @@ namespace RCS.DIS.Services.DataModel
         #endregion
 
         #region Retrieve
-        // Arbitrarily collect the Versies here, being the largest table.
+        // Arbitrarily collect here, being the largest table.
+
+        public static short[] Jaren()
+        {
+            using (var dbContext = new Entities())
+            {
+                // TODO Check efficiency.
+                var result = dbContext.DbcProfiels.Select(entity => entity.Jaar).Distinct().ToArray();
+
+                return result;
+            };
+        }
+
         public static string[] Versies()
         {
             using (var dbContext = new Entities())
             {
                 // TODO Check efficiency.
-                var entities = dbContext.DbcProfiels.Select(entity => entity.Versie).Distinct().ToArray();
+                var result = dbContext.DbcProfiels.Select(entity => entity.Versie).Distinct().ToArray();
 
-                return entities;
+                return result;
             };
         }
         #endregion

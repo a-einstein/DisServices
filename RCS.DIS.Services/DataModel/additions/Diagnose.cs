@@ -42,9 +42,9 @@ namespace RCS.DIS.Services.DataModel
             using (var dbContext = new Entities())
             {
                 // TODO Check efficiency.
-                var entities = dbContext.Diagnoses.Where(entity => entity.Omschrijving.Contains(searchString)).Count();
+                var result = dbContext.Diagnoses.Where(entity => entity.Omschrijving.Contains(searchString)).Count();
 
-                return entities;
+                return result;
             };
         }
 
@@ -54,9 +54,9 @@ namespace RCS.DIS.Services.DataModel
             using (var dbContext = new Entities())
             {
                 // TODO Check efficiency.
-                var entities = dbContext.Diagnoses.Where(entity => entity.Omschrijving.Contains(searchString)).OrderBy(diagnose => diagnose.Omschrijving).ToArray();
+                var result = dbContext.Diagnoses.Where(entity => entity.Omschrijving.Contains(searchString)).OrderBy(diagnose => diagnose.Omschrijving).ToArray();
 
-                return entities;
+                return result;
             };
         }
         #endregion

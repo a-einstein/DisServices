@@ -10,7 +10,10 @@ namespace RCS.DIS.Services.Retrieving
     [ServiceContract]
     public interface IRetrieveService
     {
-        #region Versies
+        #region General
+        [OperationContract]
+        short[] Jaren();
+
         [OperationContract]
         string[] Versies();
         #endregion
@@ -45,6 +48,24 @@ namespace RCS.DIS.Services.Retrieving
 
         [OperationContract]
         Zorgproduct[] ZorgproductOmschrijvingContainsEntities(string searchString);
+        #endregion
+
+        #region DbcOverzichten
+        [OperationContract]
+        int DbcOverzichtNumber(
+            int jaar,
+            string specialismeCode,
+            string diagnoseCode,
+            int zorgproductCode,
+            string versie);
+
+        [OperationContract]
+        DbcOverzicht[] DbcOverzichtEntities(
+            int jaar,
+            string specialismeCode,
+            string diagnoseCode,
+            int zorgproductCode,
+            string versie);
         #endregion
     }
 }

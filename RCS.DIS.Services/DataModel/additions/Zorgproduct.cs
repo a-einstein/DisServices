@@ -19,16 +19,16 @@ namespace RCS.DIS.Services.DataModel
         // TODO Consider some sort of factory class.
         public static int CreateOrUpdate(Zorgproduct feedEntity)
         {
-            using (var entities = new Entities())
+            using (var dbContext = new Entities())
             {
-                var foundEntity = entities.Zorgproducts.Find(feedEntity.Key());
+                var foundEntity = dbContext.Zorgproducts.Find(feedEntity.Key());
 
                 if (foundEntity == null)
-                    entities.Zorgproducts.Add(feedEntity);
+                    dbContext.Zorgproducts.Add(feedEntity);
                 else if (feedEntity.Peildatum > foundEntity.Peildatum)
-                    entities.Entry(foundEntity).CurrentValues.SetValues(feedEntity);
+                    dbContext.Entry(foundEntity).CurrentValues.SetValues(feedEntity);
 
-                var rowsAffected = entities.SaveChanges();
+                var rowsAffected = dbContext.SaveChanges();
 
                 return rowsAffected;
             };
@@ -37,14 +37,14 @@ namespace RCS.DIS.Services.DataModel
         // Currently only for test purposes.
         public static int Delete(object[] key)
         {
-            using (var entities = new Entities())
+            using (var dbContext = new Entities())
             {
-                var foundEntity = entities.Zorgproducts.Find(key);
+                var foundEntity = dbContext.Zorgproducts.Find(key);
 
                 if (foundEntity != null)
-                    entities.Zorgproducts.Remove(foundEntity);
+                    dbContext.Zorgproducts.Remove(foundEntity);
 
-                var rowsAffected = entities.SaveChanges();
+                var rowsAffected = dbContext.SaveChanges();
 
                 return rowsAffected;
             };
@@ -56,9 +56,9 @@ namespace RCS.DIS.Services.DataModel
         {
             using (var dbContext = new Entities())
             {
-                var entities = dbContext.Zorgproducts.Where(entity => entity.OmschrijvingConsument.Contains(searchString)|| entity.OmschrijvingLatijn.Contains(searchString)).Count();
+                var result = dbContext.Zorgproducts.Where(entity => entity.OmschrijvingConsument.Contains(searchString)|| entity.OmschrijvingLatijn.Contains(searchString)).Count();
 
-                return entities;
+                return result;
             };
         }
 
@@ -66,9 +66,9 @@ namespace RCS.DIS.Services.DataModel
         {
             using (var dbContext = new Entities())
             {
-                var entities = dbContext.Zorgproducts.Where(entity => entity.OmschrijvingConsument.Contains(searchString) || entity.OmschrijvingLatijn.Contains(searchString)).OrderBy(diagnose => diagnose.OmschrijvingConsument).ToArray();
+                var result = dbContext.Zorgproducts.Where(entity => entity.OmschrijvingConsument.Contains(searchString) || entity.OmschrijvingLatijn.Contains(searchString)).OrderBy(diagnose => diagnose.OmschrijvingConsument).ToArray();
 
-                return entities;
+                return result;
             };
         }
         #endregion

@@ -19,7 +19,20 @@ namespace RCS.DIS.Services.Retrieving
         }
         #endregion
 
-        #region Versies
+        #region General
+        public short[] Jaren()
+        {
+            try
+            {
+                return DataModel.DbcProfiel.Jaren();
+            }
+            catch (Exception exception)
+            {
+                TraceException(exception);
+                return null;
+            }
+        }
+
         public string[] Versies()
         {
             try
@@ -147,6 +160,58 @@ namespace RCS.DIS.Services.Retrieving
             {
                 var entities = DataModel.Zorgproduct.OmschrijvingContainsEntities(searchString);
                 var dtos = entities.Select(entity => Mapper.Map<DTOs.Zorgproduct>(entity));
+
+                return dtos.ToArray();
+            }
+            catch (Exception exception)
+            {
+                TraceException(exception);
+                return null;
+            }
+        }
+        #endregion
+
+        #region DbcOverzichten
+        public int DbcOverzichtNumber(
+            int jaar,
+            string specialismeCode,
+            string diagnoseCode,
+            int zorgproductCode,
+            string versie)
+        {
+            try
+            {
+                return DataModel.DbcOverzicht.DbcOverzichtNumber(
+                    jaar,
+                    specialismeCode,
+                    diagnoseCode,
+                    zorgproductCode,
+                    versie);
+            }
+            catch (Exception exception)
+            {
+                TraceException(exception);
+                return 0;
+            }
+        }
+
+        public DbcOverzicht[] DbcOverzichtEntities(
+            int jaar,
+            string specialismeCode,
+            string diagnoseCode,
+            int zorgproductCode,
+            string versie)
+        {
+            try
+            {
+                var entities = DataModel.DbcOverzicht.DbcOverzichtEntities(
+                    jaar,
+                    specialismeCode,
+                    diagnoseCode,
+                    zorgproductCode,
+                    versie);
+
+                var dtos = entities.Select(entity => Mapper.Map<DTOs.DbcOverzicht>(entity));
 
                 return dtos.ToArray();
             }

@@ -20,5 +20,11 @@ namespace RCS.DIS.Services.Retrieving
 
         [OperationContract]
         Specialisme[] SpecialismeOmschrijvingContainsEntities(string searchString);
+
+        [OperationContract]
+        int ZorgactiviteitOmschrijvingContainsNumber(string searchString);
+
+        [OperationContract]
+        Zorgactiviteit[] ZorgactiviteitOmschrijvingContainsEntities(string searchString);
     }
 }

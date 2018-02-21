@@ -8,6 +8,7 @@ namespace RCS.DIS.Services.Retrieving
 {
     public class RetrieveService : Service, IRetrieveService
     {
+        #region Construction
         static RetrieveService()
         {
             SetupTracing(nameof(RetrieveService));
@@ -16,7 +17,9 @@ namespace RCS.DIS.Services.Retrieving
             // Experimental use of AutoMapper.
             Mapper.Initialize(configuration => { configuration.CreateMap<DataModel.Diagnose, Diagnose>(); });
         }
+        #endregion
 
+        #region Versies
         public string[] Versies()
         {
             try
@@ -29,7 +32,9 @@ namespace RCS.DIS.Services.Retrieving
                 return null;
             }
         }
+        #endregion
 
+        #region Diagnoses
         public int DiagnoseOmschrijvingContainsNumber(string searchString)
         {
             try
@@ -58,7 +63,9 @@ namespace RCS.DIS.Services.Retrieving
                 return null;
             }
         }
+        #endregion
 
+        #region Specialismes
         public int SpecialismeOmschrijvingContainsNumber(string searchString)
         {
             try
@@ -87,5 +94,37 @@ namespace RCS.DIS.Services.Retrieving
                 return null;
             }
         }
+        #endregion
+
+        #region Zorgactiviteiten
+        public int ZorgactiviteitOmschrijvingContainsNumber(string searchString)
+        {
+            try
+            {
+                return DataModel.Zorgactiviteit.OmschrijvingContainsNumber(searchString);
+            }
+            catch (Exception exception)
+            {
+                TraceException(exception);
+                return 0;
+            }
+        }
+
+        public Zorgactiviteit[] ZorgactiviteitOmschrijvingContainsEntities(string searchString)
+        {
+            try
+            {
+                var entities = DataModel.Zorgactiviteit.OmschrijvingContainsEntities(searchString);
+                var dtos = entities.Select(entity => Mapper.Map<DTOs.Zorgactiviteit>(entity));
+
+                return dtos.ToArray();
+            }
+            catch (Exception exception)
+            {
+                TraceException(exception);
+                return null;
+            }
+        }
+        #endregion
     }
 }

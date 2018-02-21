@@ -14,5 +14,11 @@ namespace RCS.DIS.Services.Retrieving
 
         [OperationContract]
         Diagnose[] DiagnoseOmschrijvingContainsEntities(string searchString);
+
+        [OperationContract]
+        int SpecialismeOmschrijvingContainsNumber(string searchString);
+
+        [OperationContract]
+        Specialisme[] SpecialismeOmschrijvingContainsEntities(string searchString);
     }
 }

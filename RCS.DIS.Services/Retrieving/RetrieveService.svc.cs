@@ -58,5 +58,34 @@ namespace RCS.DIS.Services.Retrieving
                 return null;
             }
         }
+
+        public int SpecialismeOmschrijvingContainsNumber(string searchString)
+        {
+            try
+            {
+                return DataModel.Specialisme.OmschrijvingContainsNumber(searchString);
+            }
+            catch (Exception exception)
+            {
+                TraceException(exception);
+                return 0;
+            }
+        }
+
+        public Specialisme[] SpecialismeOmschrijvingContainsEntities(string searchString)
+        {
+            try
+            {
+                var entities = DataModel.Specialisme.OmschrijvingContainsEntities(searchString);
+                var dtos = entities.Select(entity => Mapper.Map<DTOs.Specialisme>(entity));
+
+                return dtos.ToArray();
+            }
+            catch (Exception exception)
+            {
+                TraceException(exception);
+                return null;
+            }
+        }
     }
 }

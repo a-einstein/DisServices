@@ -1,4 +1,6 @@
-﻿namespace RCS.DIS.Services.DataModel
+﻿using System.Linq;
+
+namespace RCS.DIS.Services.DataModel
 {
     public partial class Specialisme : IEntity
     {
@@ -26,6 +28,26 @@
                 var rowsAffected = entities.SaveChanges();
 
                 return rowsAffected;
+            };
+        }
+
+        public static int OmschrijvingContainsNumber(string searchString)
+        {
+            using (var dbContext = new Entities())
+            {
+                var entities = dbContext.Specialismes.Where(entity => entity.Omschrijving.Contains(searchString)).Count();
+
+                return entities;
+            };
+        }
+
+        public static Specialisme[] OmschrijvingContainsEntities(string searchString)
+        {
+            using (var dbContext = new Entities())
+            {
+                var entities = dbContext.Specialismes.Where(entity => entity.Omschrijving.Contains(searchString)).OrderBy(diagnose => diagnose.Omschrijving).ToArray();
+
+                return entities;
             };
         }
     }

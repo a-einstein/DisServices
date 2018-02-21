@@ -39,7 +39,7 @@ namespace RCS.DIS.Services.DataModel
             using (var dbContext = new Entities())
             {
                 // TODO Check efficiency.
-                var entities = dbContext.Diagnoses.Where(diagnose => diagnose.Omschrijving.Contains(searchString)).Count();
+                var entities = dbContext.Diagnoses.Where(entity => entity.Omschrijving.Contains(searchString)).Count();
 
                 return entities;
             };
@@ -51,7 +51,7 @@ namespace RCS.DIS.Services.DataModel
             using (var dbContext = new Entities())
             {
                 // TODO Check efficiency.
-                var entities = dbContext.Diagnoses.Where(diagnose => diagnose.Omschrijving.Contains(searchString)).OrderBy(diagnose => diagnose.Omschrijving).ToArray();
+                var entities = dbContext.Diagnoses.Where(entity => entity.Omschrijving.Contains(searchString)).OrderBy(diagnose => diagnose.Omschrijving).ToArray();
 
                 return entities;
             };

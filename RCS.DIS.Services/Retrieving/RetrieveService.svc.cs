@@ -24,7 +24,7 @@ namespace RCS.DIS.Services.Retrieving
         {
             try
             {
-                return DataModel.Zorgprofielklasse.Versies();
+                return DataModel.DbcProfiel.Versies();
             }
             catch (Exception exception)
             {
@@ -116,6 +116,37 @@ namespace RCS.DIS.Services.Retrieving
             {
                 var entities = DataModel.Zorgactiviteit.OmschrijvingContainsEntities(searchString);
                 var dtos = entities.Select(entity => Mapper.Map<DTOs.Zorgactiviteit>(entity));
+
+                return dtos.ToArray();
+            }
+            catch (Exception exception)
+            {
+                TraceException(exception);
+                return null;
+            }
+        }
+        #endregion
+
+        #region Zorgproducten
+        public int ZorgproductOmschrijvingContainsNumber(string searchString)
+        {
+            try
+            {
+                return DataModel.Zorgproduct.OmschrijvingContainsNumber(searchString);
+            }
+            catch (Exception exception)
+            {
+                TraceException(exception);
+                return 0;
+            }
+        }
+
+        public Zorgproduct[] ZorgproductOmschrijvingContainsEntities(string searchString)
+        {
+            try
+            {
+                var entities = DataModel.Zorgproduct.OmschrijvingContainsEntities(searchString);
+                var dtos = entities.Select(entity => Mapper.Map<DTOs.Zorgproduct>(entity));
 
                 return dtos.ToArray();
             }

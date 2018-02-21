@@ -1,7 +1,10 @@
-﻿namespace RCS.DIS.Services.DataModel
+﻿using System.Linq;
+
+namespace RCS.DIS.Services.DataModel
 {
     public partial class Zorgproduct : IEntity
     {
+        #region Feed
         public object[] Key()
         {
             // Note order is significant.
@@ -46,5 +49,28 @@
                 return rowsAffected;
             };
         }
+        #endregion
+
+        #region Retrieve
+        public static int OmschrijvingContainsNumber(string searchString)
+        {
+            using (var dbContext = new Entities())
+            {
+                var entities = dbContext.Zorgproducts.Where(entity => entity.OmschrijvingConsument.Contains(searchString)|| entity.OmschrijvingLatijn.Contains(searchString)).Count();
+
+                return entities;
+            };
+        }
+
+        public static Zorgproduct[] OmschrijvingContainsEntities(string searchString)
+        {
+            using (var dbContext = new Entities())
+            {
+                var entities = dbContext.Zorgproducts.Where(entity => entity.OmschrijvingConsument.Contains(searchString) || entity.OmschrijvingLatijn.Contains(searchString)).OrderBy(diagnose => diagnose.OmschrijvingConsument).ToArray();
+
+                return entities;
+            };
+        }
+        #endregion
     }
 }

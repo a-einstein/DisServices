@@ -1,7 +1,10 @@
-﻿namespace RCS.DIS.Services.DataModel
+﻿using System.Linq;
+
+namespace RCS.DIS.Services.DataModel
 {
     public partial class DbcProfiel : IEntity
     {
+        #region Feed
         public object[] Key()
         {
             // Note order is significant.
@@ -32,5 +35,20 @@
                 return rowsAffected;
             };
         }
+        #endregion
+
+        #region Retrieve
+        // Arbitrarily collect the Versies here, being the largest table.
+        public static string[] Versies()
+        {
+            using (var dbContext = new Entities())
+            {
+                // TODO Check efficiency.
+                var entities = dbContext.DbcProfiels.Select(entity => entity.Versie).Distinct().ToArray();
+
+                return entities;
+            };
+        }
+        #endregion
     }
 }

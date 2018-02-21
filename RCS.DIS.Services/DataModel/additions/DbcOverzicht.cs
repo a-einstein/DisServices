@@ -2,6 +2,7 @@
 {
     public partial class DbcOverzicht : IEntity
     {
+        #region Feed
         public object[] Key()
         {
             // Note order is significant.
@@ -31,5 +32,6 @@
                 return rowsAffected;
             };
         }
+        #endregion
     }
 }

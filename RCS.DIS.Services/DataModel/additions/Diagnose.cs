@@ -4,6 +4,7 @@ namespace RCS.DIS.Services.DataModel
 {
     public partial class Diagnose : IEntity
     {
+        #region Feed
         public object[] Key()
         {
             // Note order is significant.
@@ -32,7 +33,9 @@ namespace RCS.DIS.Services.DataModel
                 return rowsAffected;
             };
         }
+        #endregion
 
+        #region Retrieve
         // Would be candidate for an Interface, if statics were allowed.
         public static int OmschrijvingContainsNumber(string searchString)
         {
@@ -56,5 +59,6 @@ namespace RCS.DIS.Services.DataModel
                 return entities;
             };
         }
+        #endregion
     }
 }

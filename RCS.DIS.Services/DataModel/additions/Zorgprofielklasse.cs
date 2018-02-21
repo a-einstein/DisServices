@@ -1,9 +1,8 @@
-﻿using System.Linq;
-
-namespace RCS.DIS.Services.DataModel
+﻿namespace RCS.DIS.Services.DataModel
 {
     public partial class Zorgprofielklasse : IEntity
     {
+        #region Feed
         public object[] Key()
         {
             // Note order is significant.
@@ -29,17 +28,6 @@ namespace RCS.DIS.Services.DataModel
                 return rowsAffected;
             };
         }
-
-        // Arbitrarily collect the Versies here, being the largest table.
-        public static string[] Versies()
-        {
-            using (var dbContext = new Entities())
-            {
-                // TODO Check efficiency.
-                var entities = dbContext.Zorgprofielklasses.Select(entity => entity.Versie).Distinct().ToArray();
-
-                return entities;
-            };
-        }
+        #endregion
     }
 }

@@ -4,6 +4,7 @@ namespace RCS.DIS.Services.DataModel
 {
     public partial class Zorgactiviteit : IEntity
     {
+        #region Feed
         public object[] Key()
         {
             // Note order is significant.
@@ -30,7 +31,9 @@ namespace RCS.DIS.Services.DataModel
                 return rowsAffected;
             };
         }
+        #endregion
 
+        #region Retrieve
         public static int OmschrijvingContainsNumber(string searchString)
         {
             using (var dbContext = new Entities())
@@ -50,5 +53,6 @@ namespace RCS.DIS.Services.DataModel
                 return entities;
             };
         }
+        #endregion
     }
 }

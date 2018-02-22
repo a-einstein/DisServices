@@ -1,9 +1,18 @@
-﻿namespace RCS.DIS.Services.DataModel
+﻿using System;
+using System.Diagnostics;
+
+namespace RCS.DIS.Services.DataModel
 {
-    public partial class Zorgprofielklasse : IEntity
+    public partial class Zorgprofielklasse : Entity
     {
         #region Feed
-        public object[] Key()
+        public override void Clean()
+        {
+            // Trim because whitespace encountered.
+            Versie = Versie.Trim();
+        }
+
+        public override object[] Key()
         {
             // Note order is significant.
             return new object[]
@@ -17,6 +26,8 @@
         {
             using (var dbContext = new Entities())
             {
+                feedEntity.Clean();
+
                 var foundEntity = dbContext.Zorgprofielklasses.Find(feedEntity.Key());
 
                 if (foundEntity == null)
@@ -27,6 +38,16 @@
 
                 return rowsAffected;
             };
+        }
+
+        public override void TraceException(Exception exception)
+        {
+            base.TraceException(exception);
+
+            Trace.WriteLine($"Entity = {nameof(Zorgprofielklasse)}");
+
+            Trace.WriteLine($"ZorgprofielklasseCode = {ZorgprofielklasseCode}");
+            Trace.WriteLine($"Versie = {Versie}");
         }
         #endregion
     }

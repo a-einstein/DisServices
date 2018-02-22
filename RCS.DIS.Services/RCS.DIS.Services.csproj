@@ -94,7 +94,7 @@
     <Compile Include="DataModel\additions\DbcOverzicht.cs" />
     <Compile Include="DataModel\additions\DbcProfiel.cs" />
     <Compile Include="DataModel\additions\Diagnose.cs" />
-    <Compile Include="DataModel\additions\IEntity.cs" />
+    <Compile Include="DataModel\additions\Entity.cs" />
     <Compile Include="DataModel\additions\Specialisme.cs" />
     <Compile Include="DataModel\additions\Zorgactiviteit.cs" />
     <Compile Include="DataModel\additions\Zorgproduct.cs" />

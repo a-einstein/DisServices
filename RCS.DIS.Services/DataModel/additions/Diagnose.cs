@@ -1,11 +1,21 @@
-﻿using System.Linq;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
 
 namespace RCS.DIS.Services.DataModel
 {
-    public partial class Diagnose : IEntity
+    public partial class Diagnose : Entity
     {
         #region Feed
-        public object[] Key()
+        public override void Clean()
+        {
+            // Trim because whitespace encountered.
+            DiagnoseCode = DiagnoseCode.Trim();
+            SpecialismeCode = SpecialismeCode.Trim();
+            Versie = Versie.Trim();
+        }
+
+        public override object[] Key()
         {
             // Note order is significant.
             return new object[]
@@ -21,6 +31,8 @@ namespace RCS.DIS.Services.DataModel
         {
             using (var dbContext = new Entities())
             {
+                feedEntity.Clean();
+
                 var foundEntity = dbContext.Diagnoses.Find(feedEntity.Key());
 
                 if (foundEntity == null)
@@ -32,6 +44,17 @@ namespace RCS.DIS.Services.DataModel
 
                 return rowsAffected;
             };
+        }
+
+        public override void TraceException(Exception exception)
+        {
+            base.TraceException(exception);
+
+            Trace.WriteLine($"Entity = {nameof(Diagnose)}");
+
+            Trace.WriteLine($"SpecialismeCode = {SpecialismeCode}");
+            Trace.WriteLine($"DiagnoseCode = {DiagnoseCode}");
+            Trace.WriteLine($"Versie = {Versie}");
         }
         #endregion
 

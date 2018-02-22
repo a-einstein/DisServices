@@ -1,6 +1,7 @@
 ﻿using RCS.DIS.Services.Common;
 using RCS.DIS.Services.DataModel;
 using System;
+using System.Diagnostics;
 
 namespace RCS.DIS.Services.Feeding
 {
@@ -19,7 +20,8 @@ namespace RCS.DIS.Services.Feeding
             }
             catch (Exception exception)
             {
-                TraceException(exception);
+                feedEntity.TraceException(exception);
+
                 return 0;
             }
         }
@@ -32,7 +34,8 @@ namespace RCS.DIS.Services.Feeding
             }
             catch (Exception exception)
             {
-                TraceException(exception);
+                feedEntity.TraceException(exception);
+
                 return 0;
             }
         }
@@ -45,7 +48,8 @@ namespace RCS.DIS.Services.Feeding
             }
             catch (Exception exception)
             {
-                TraceException(exception);
+                feedEntity.TraceException(exception);
+
                 return 0;
             }
         }
@@ -58,7 +62,8 @@ namespace RCS.DIS.Services.Feeding
             }
             catch (Exception exception)
             {
-                TraceException(exception);
+                feedEntity.TraceException(exception);
+
                 return 0;
             }
         }
@@ -71,7 +76,8 @@ namespace RCS.DIS.Services.Feeding
             }
             catch (Exception exception)
             {
-                TraceException(exception);
+                feedEntity.TraceException(exception);
+
                 return 0;
             }
         }
@@ -84,7 +90,8 @@ namespace RCS.DIS.Services.Feeding
             }
             catch (Exception exception)
             {
-                TraceException(exception);
+                feedEntity.TraceException(exception);
+
                 return 0;
             }
         }
@@ -97,7 +104,8 @@ namespace RCS.DIS.Services.Feeding
             }
             catch (Exception exception)
             {
-                TraceException(exception);
+                feedEntity.TraceException(exception);
+
                 return 0;
             }
         }

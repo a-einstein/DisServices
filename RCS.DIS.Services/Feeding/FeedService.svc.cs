@@ -1,7 +1,7 @@
 ﻿using RCS.DIS.Services.Common;
 using RCS.DIS.Services.DataModel;
 using System;
-using System.Diagnostics;
+using System.ServiceModel;
 
 namespace RCS.DIS.Services.Feeding
 {
@@ -22,7 +22,7 @@ namespace RCS.DIS.Services.Feeding
             {
                 feedEntity.TraceException(exception);
 
-                return 0;
+                throw new FaultException($"{nameof(FeedService)} - {nameof(DbcOverzicht)} - {exception.Message}");
             }
         }
 
@@ -36,7 +36,7 @@ namespace RCS.DIS.Services.Feeding
             {
                 feedEntity.TraceException(exception);
 
-                return 0;
+                throw new FaultException($"{nameof(FeedService)} - {nameof(DbcProfiel)} - {exception.Message}");
             }
         }
 
@@ -50,7 +50,7 @@ namespace RCS.DIS.Services.Feeding
             {
                 feedEntity.TraceException(exception);
 
-                return 0;
+                throw new FaultException($"{nameof(FeedService)} - {nameof(Diagnose)} - {exception.Message}");
             }
         }
 
@@ -64,7 +64,7 @@ namespace RCS.DIS.Services.Feeding
             {
                 feedEntity.TraceException(exception);
 
-                return 0;
+                throw new FaultException($"{nameof(FeedService)} - {nameof(Specialisme)} - {exception.Message}");
             }
         }
 
@@ -78,7 +78,7 @@ namespace RCS.DIS.Services.Feeding
             {
                 feedEntity.TraceException(exception);
 
-                return 0;
+                throw new FaultException($"{nameof(FeedService)} - {nameof(Zorgactiviteit)} - {exception.Message}");
             }
         }
 
@@ -92,7 +92,7 @@ namespace RCS.DIS.Services.Feeding
             {
                 feedEntity.TraceException(exception);
 
-                return 0;
+                throw new FaultException($"{nameof(FeedService)} - {nameof(Zorgproduct)} - {exception.Message}");
             }
         }
 
@@ -106,7 +106,7 @@ namespace RCS.DIS.Services.Feeding
             {
                 feedEntity.TraceException(exception);
 
-                return 0;
+                throw new FaultException($"{nameof(FeedService)} - {nameof(Zorgprofielklasse)} - {exception.Message}");
             }
         }
     }

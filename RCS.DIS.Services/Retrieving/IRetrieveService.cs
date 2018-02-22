@@ -67,5 +67,25 @@ namespace RCS.DIS.Services.Retrieving
             int zorgproductCode,
             string versie);
         #endregion
+
+        #region DbcProfielen
+        [OperationContract]
+        int DbcProfielNumber(
+            int jaar,
+            string specialismeCode,
+            string diagnoseCode,
+            int zorgproductCode,
+            string zorgactiviteitCode,
+            string versie);
+
+        [OperationContract]
+        DbcProfiel[] DbcProfielEntities(
+            int jaar,
+            string specialismeCode,
+            string diagnoseCode,
+            int zorgproductCode,
+            string zorgactiviteitCode,
+            string versie);
+        #endregion
     }
 }

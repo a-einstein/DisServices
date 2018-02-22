@@ -222,5 +222,61 @@ namespace RCS.DIS.Services.Retrieving
             }
         }
         #endregion
+
+        #region DbcProfielen
+        public int DbcProfielNumber(
+            int jaar,
+            string specialismeCode,
+            string diagnoseCode,
+            int zorgproductCode,
+            string zorgactiviteitCode,
+            string versie)
+        {
+            try
+            {
+                return DataModel.DbcProfiel.DbcProfielNumber(
+                    jaar,
+                    specialismeCode,
+                    diagnoseCode,
+                    zorgproductCode,
+                    zorgactiviteitCode,
+                    versie);
+            }
+            catch (Exception exception)
+            {
+                TraceException(exception);
+                return 0;
+            }
+        }
+
+        public DbcProfiel[] DbcProfielEntities(
+            int jaar,
+            string specialismeCode,
+            string diagnoseCode,
+            int zorgproductCode,
+            string zorgactiviteitCode,
+            string versie)
+        {
+            try
+            {
+                var entities = DataModel.DbcProfiel.DbcProfielEntities(
+                    jaar,
+                    specialismeCode,
+                    diagnoseCode,
+                    zorgproductCode,
+                    zorgactiviteitCode,
+                    versie);
+
+                var dtos = entities.Select(entity => Mapper.Map<DTOs.DbcProfiel>(entity));
+
+                return dtos.ToArray();
+            }
+            catch (Exception exception)
+            {
+                TraceException(exception);
+                return null;
+            }
+        }
+        #endregion
     }
 }

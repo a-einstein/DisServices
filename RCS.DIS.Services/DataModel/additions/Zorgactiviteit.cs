@@ -59,7 +59,7 @@ namespace RCS.DIS.Services.DataModel
         {
             using (var dbContext = new Entities())
             {
-                var result = dbContext.Zorgactiviteits.Where(entity => entity.Omschrijving.Contains(searchString)).Count();
+                var result = ContainsAllQuery(searchString, dbContext).Count();
 
                 return result;
             };
@@ -69,10 +69,23 @@ namespace RCS.DIS.Services.DataModel
         {
             using (var dbContext = new Entities())
             {
-                var result = dbContext.Zorgactiviteits.Where(entity => entity.Omschrijving.Contains(searchString)).OrderBy(diagnose => diagnose.Omschrijving).ToArray();
+                var result = ContainsAllQuery(searchString, dbContext).ToArray();
 
                 return result;
             };
+        }
+
+        private static IQueryable<Zorgactiviteit> ContainsAllQuery(string searchString, Entities dbContext)
+        {
+            string[] searchSubstrings = SplitOnSpaceOrQuote(searchString);
+
+            // Note that LINQ to Entities might not support functions like String.Split(Char[]) within the query, as proposed in some LINQ queries in other contexts.
+            var query =
+                from record in dbContext.Zorgactiviteits
+                where searchSubstrings.All(subString => record.Omschrijving.Contains(subString))
+                select record;
+
+            return query;
         }
         #endregion
     }

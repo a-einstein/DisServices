@@ -59,7 +59,7 @@ namespace RCS.DIS.Services.DataModel
                 return rowsAffected;
             };
         }
- 
+
         public override void TraceException(Exception exception)
         {
             base.TraceException(exception);
@@ -76,7 +76,7 @@ namespace RCS.DIS.Services.DataModel
         {
             using (var dbContext = new Entities())
             {
-                var result = dbContext.Zorgproducts.Where(entity => entity.OmschrijvingConsument.Contains(searchString)|| entity.OmschrijvingLatijn.Contains(searchString)).Count();
+                var result = ContainsAllQuery(searchString, dbContext).Count();
 
                 return result;
             };
@@ -86,10 +86,24 @@ namespace RCS.DIS.Services.DataModel
         {
             using (var dbContext = new Entities())
             {
-                var result = dbContext.Zorgproducts.Where(entity => entity.OmschrijvingConsument.Contains(searchString) || entity.OmschrijvingLatijn.Contains(searchString)).OrderBy(diagnose => diagnose.OmschrijvingConsument).ToArray();
+                var result = ContainsAllQuery(searchString, dbContext).ToArray();
 
                 return result;
             };
+        }
+
+        private static IQueryable<Zorgproduct> ContainsAllQuery(string searchString, Entities dbContext)
+        {
+            string[] searchSubstrings = SplitOnSpaceOrQuote(searchString);
+
+            var query =
+                from record in dbContext.Zorgproducts
+                where searchSubstrings.All(subString =>
+                    record.OmschrijvingConsument.Contains(subString) ||
+                    record.OmschrijvingLatijn.Contains(subString))
+                select record;
+
+            return query;
         }
         #endregion
     }

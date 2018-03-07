@@ -59,28 +59,36 @@ namespace RCS.DIS.Services.DataModel
         #endregion
 
         #region Retrieve
-        // Would be candidate for an Interface, if statics were allowed.
         public static int OmschrijvingContainsNumber(string searchString)
         {
             using (var dbContext = new Entities())
             {
-                // TODO Check efficiency.
-                var result = dbContext.Diagnoses.Where(entity => entity.Omschrijving.Contains(searchString)).Count();
+                var result = ContainsAllQuery(searchString, dbContext).Count();
 
                 return result;
             };
         }
 
-        // Would be candidate for an Interface, if statics were allowed.
         public static Diagnose[] OmschrijvingContainsEntities(string searchString)
         {
             using (var dbContext = new Entities())
             {
-                // TODO Check efficiency.
-                var result = dbContext.Diagnoses.Where(entity => entity.Omschrijving.Contains(searchString)).OrderBy(diagnose => diagnose.Omschrijving).ToArray();
+                var result = ContainsAllQuery(searchString, dbContext).ToArray();
 
                 return result;
             };
+        }
+
+        private static IQueryable<Diagnose> ContainsAllQuery(string searchString, Entities dbContext)
+        {
+            string[] searchSubstrings = SplitOnSpaceOrQuote(searchString);
+
+            var query =
+                from record in dbContext.Diagnoses
+                where searchSubstrings.All(subString => record.Omschrijving.Contains(subString))
+                select record;
+
+            return query;
         }
         #endregion
     }

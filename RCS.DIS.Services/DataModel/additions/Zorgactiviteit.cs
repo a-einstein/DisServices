@@ -75,6 +75,9 @@ namespace RCS.DIS.Services.DataModel
             };
         }
 
+        // TODO This region seems suitable for abstraction,
+        // except that this function cannot be overridden for it is static.
+        // For the moment just leave it this way.
         private static IQueryable<Zorgactiviteit> ContainsAllQuery(string searchString, Entities dbContext)
         {
             string[] searchSubstrings = SplitOnSpaceOrQuote(searchString);

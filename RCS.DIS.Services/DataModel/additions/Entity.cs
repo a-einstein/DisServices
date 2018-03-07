@@ -7,6 +7,7 @@ namespace RCS.DIS.Services.DataModel
 {
     public abstract class Entity
     {
+        #region Feed
         // TODO Call this implicitly in postconstruction manner.
         public abstract void Clean();
 
@@ -18,7 +19,9 @@ namespace RCS.DIS.Services.DataModel
             Trace.WriteLine(DateTime.Now);
             Trace.WriteLine($"exception.Message = {exception.Message}");
         }
+        #endregion
 
+        #region Retrieve
         protected static string[] SplitOnSpaceOrQuote(string searchString)
         {
             var regEx = new Regex("(\"[^\"]+\")|\\S+", RegexOptions.IgnoreCase);
@@ -27,5 +30,6 @@ namespace RCS.DIS.Services.DataModel
 
             return result;
         }
+        #endregion
     }
 }

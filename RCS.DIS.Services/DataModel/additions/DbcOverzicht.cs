@@ -6,6 +6,7 @@ namespace RCS.DIS.Services.DataModel
 {
     public partial class DbcOverzicht : Entity
     {
+        #region Feed
         public override void Clean()
         {
             // Trim because whitespace encountered.
@@ -14,7 +15,6 @@ namespace RCS.DIS.Services.DataModel
             Versie = Versie.Trim();
         }
 
-        #region Feed
         public override object[] Key()
         {
             // Note order is significant.
@@ -71,12 +71,14 @@ namespace RCS.DIS.Services.DataModel
         {
             using (var dbContext = new Entities())
             {
-                var result = dbContext.DbcOverzichts.Where(entity =>
-                        entity.Jaar.Equals(jaar) &&
-                        entity.SpecialismeCode.Equals(specialismeCode) &&
-                        entity.DiagnoseCode.Equals(diagnoseCode) &&
-                        entity.ZorgproductCode.Equals(zorgproductCode) &&
-                        entity.Versie.Equals(versie)).Count();
+                var result = KeysQuery(
+                    jaar,
+                    specialismeCode,
+                    diagnoseCode,
+                    zorgproductCode,
+                    versie,
+                    dbContext)
+                .Count();
 
                 return result;
             };
@@ -91,20 +93,43 @@ namespace RCS.DIS.Services.DataModel
         {
             using (var dbContext = new Entities())
             {
-                var result = dbContext.DbcOverzichts.Where(entity =>
-                        entity.Jaar.Equals(jaar) &&
-                        entity.SpecialismeCode.Equals(specialismeCode) &&
-                        entity.DiagnoseCode.Equals(diagnoseCode) &&
-                        entity.ZorgproductCode.Equals(zorgproductCode) &&
-                        entity.Versie.Equals(versie))
-                    .OrderBy
-                        (entity => entity.SpecialismeCode).ThenBy
-                        (entity => entity.DiagnoseCode).ThenBy
-                        (entity => entity.ZorgproductCode)
-                    .ToArray();
+                 var result = KeysQuery(
+                    jaar,
+                    specialismeCode,
+                    diagnoseCode,
+                    zorgproductCode,
+                    versie,
+                    dbContext)
+                .OrderBy
+                    (entity => entity.SpecialismeCode).ThenBy
+                    (entity => entity.DiagnoseCode).ThenBy
+                    (entity => entity.ZorgproductCode)
+                .ToArray();
 
                 return result;
             };
+        }
+
+        private static IQueryable<DbcOverzicht> KeysQuery(
+            int jaar,
+            string specialismeCode,
+            string diagnoseCode,
+            int zorgproductCode,
+            string versie, 
+            Entities dbContext)
+        {
+            var query =
+                from entity in dbContext.DbcOverzichts
+                where
+                    // Note that the Equal function is not valid here.
+                    entity.Jaar == jaar &&
+                    entity.SpecialismeCode == specialismeCode &&
+                    entity.DiagnoseCode == diagnoseCode &&
+                    entity.ZorgproductCode == zorgproductCode &&
+                    entity.Versie == versie
+                select entity;
+
+            return query;
         }
         #endregion
     }

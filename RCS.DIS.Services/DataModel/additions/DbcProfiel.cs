@@ -75,13 +75,15 @@ namespace RCS.DIS.Services.DataModel
         {
             using (var dbContext = new Entities())
             {
-                var result = dbContext.DbcProfiels.Where(entity =>
-                        entity.Jaar.Equals(jaar) &&
-                        entity.SpecialismeCode.Equals(specialismeCode) &&
-                        entity.DiagnoseCode.Equals(diagnoseCode) &&
-                        entity.ZorgproductCode.Equals(zorgproductCode) &&
-                        entity.ZorgactiviteitCode.Equals(zorgactiviteitCode) &&
-                        entity.Versie.Equals(versie)).Count();
+                var result = KeysQuery(
+                    jaar,
+                    specialismeCode,
+                    diagnoseCode,
+                    zorgproductCode,
+                    zorgactiviteitCode,
+                    versie,
+                    dbContext)
+                .Count();
 
                 return result;
             };
@@ -97,22 +99,47 @@ namespace RCS.DIS.Services.DataModel
         {
             using (var dbContext = new Entities())
             {
-                var result = dbContext.DbcProfiels.Where(entity =>
-                        entity.Jaar.Equals(jaar) &&
-                        entity.SpecialismeCode.Equals(specialismeCode) &&
-                        entity.DiagnoseCode.Equals(diagnoseCode) &&
-                        entity.ZorgproductCode.Equals(zorgproductCode) &&
-                        entity.ZorgactiviteitCode.Equals(zorgactiviteitCode) &&
-                        entity.Versie.Equals(versie))
-                    .OrderBy
-                        (entity => entity.SpecialismeCode).ThenBy
-                        (entity => entity.DiagnoseCode).ThenBy
-                        (entity => entity.ZorgproductCode).ThenBy
-                        (entity => entity.ZorgactiviteitCode)
-                    .ToArray();
+                var result = KeysQuery(
+                    jaar,
+                    specialismeCode,
+                    diagnoseCode,
+                    zorgproductCode,
+                    zorgactiviteitCode,
+                    versie,
+                    dbContext)
+                .OrderBy
+                    (entity => entity.SpecialismeCode).ThenBy
+                    (entity => entity.DiagnoseCode).ThenBy
+                    (entity => entity.ZorgproductCode).ThenBy
+                    (entity => entity.ZorgactiviteitCode)
+                .ToArray();
 
                 return result;
             };
+        }
+
+        private static IQueryable<DbcProfiel> KeysQuery(
+            int jaar,
+            string specialismeCode,
+            string diagnoseCode,
+            int zorgproductCode,
+            string zorgactiviteitCode,
+            string versie,
+            Entities dbContext)
+        {
+            var query =
+                from entity in dbContext.DbcProfiels
+                where
+                    // Note that the Equal function is not valid here.
+                    entity.Jaar == jaar &&
+                    entity.SpecialismeCode == specialismeCode &&
+                    entity.DiagnoseCode == diagnoseCode &&
+                    entity.ZorgproductCode == zorgproductCode &&
+                    entity.ZorgactiviteitCode == zorgactiviteitCode &&
+                    entity.Versie == versie
+                select entity;
+
+            return query;
         }
 
         // Arbitrarily collect here, being the largest table.

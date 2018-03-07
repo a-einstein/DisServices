@@ -28,7 +28,7 @@ namespace RCS.DIS.Services.Retrieving
             }
             catch (Exception exception)
             {
-                TraceException(exception);
+                HandleException(exception);
                 return null;
             }
         }
@@ -41,7 +41,7 @@ namespace RCS.DIS.Services.Retrieving
             }
             catch (Exception exception)
             {
-                TraceException(exception);
+                HandleException(exception);
                 return null;
             }
         }
@@ -56,7 +56,7 @@ namespace RCS.DIS.Services.Retrieving
             }
             catch (Exception exception)
             {
-                TraceException(exception);
+                HandleException(exception);
                 return 0;
             }
         }
@@ -72,7 +72,7 @@ namespace RCS.DIS.Services.Retrieving
             }
             catch (Exception exception)
             {
-                TraceException(exception);
+                HandleException(exception);
                 return null;
             }
         }
@@ -87,7 +87,7 @@ namespace RCS.DIS.Services.Retrieving
             }
             catch (Exception exception)
             {
-                TraceException(exception);
+                HandleException(exception);
                 return 0;
             }
         }
@@ -103,7 +103,7 @@ namespace RCS.DIS.Services.Retrieving
             }
             catch (Exception exception)
             {
-                TraceException(exception);
+                HandleException(exception);
                 return null;
             }
         }
@@ -118,7 +118,7 @@ namespace RCS.DIS.Services.Retrieving
             }
             catch (Exception exception)
             {
-                TraceException(exception);
+                HandleException(exception);
                 return 0;
             }
         }
@@ -134,7 +134,7 @@ namespace RCS.DIS.Services.Retrieving
             }
             catch (Exception exception)
             {
-                TraceException(exception);
+                HandleException(exception);
                 return null;
             }
         }
@@ -149,7 +149,7 @@ namespace RCS.DIS.Services.Retrieving
             }
             catch (Exception exception)
             {
-                TraceException(exception);
+                HandleException(exception);
                 return 0;
             }
         }
@@ -165,7 +165,7 @@ namespace RCS.DIS.Services.Retrieving
             }
             catch (Exception exception)
             {
-                TraceException(exception);
+                HandleException(exception);
                 return null;
             }
         }
@@ -190,7 +190,7 @@ namespace RCS.DIS.Services.Retrieving
             }
             catch (Exception exception)
             {
-                TraceException(exception);
+                HandleException(exception);
                 return 0;
             }
         }
@@ -217,7 +217,7 @@ namespace RCS.DIS.Services.Retrieving
             }
             catch (Exception exception)
             {
-                TraceException(exception);
+                HandleException(exception);
                 return null;
             }
         }
@@ -244,7 +244,7 @@ namespace RCS.DIS.Services.Retrieving
             }
             catch (Exception exception)
             {
-                TraceException(exception);
+                HandleException(exception);
                 return 0;
             }
         }
@@ -273,7 +273,7 @@ namespace RCS.DIS.Services.Retrieving
             }
             catch (Exception exception)
             {
-                TraceException(exception);
+                HandleException(exception);
                 return null;
             }
         }

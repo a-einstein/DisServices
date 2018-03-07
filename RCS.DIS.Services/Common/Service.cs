@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.ServiceModel;
 using System.Web.Hosting;
 
 namespace RCS.DIS.Services.Common
@@ -22,13 +23,15 @@ namespace RCS.DIS.Services.Common
             Trace.Listeners.Add(new TextWriterTraceListener($"{traceDirectory}\\{traceFile}"));
         }
 
-        protected static void TraceException(Exception exception)
+        protected static void HandleException(Exception exception)
         {
             // TODO Create separate trace file per service.
 
             Trace.WriteLine(null);
             Trace.WriteLine(DateTime.Now);
             Trace.WriteLine($"exception.Message = {exception.Message}");
+
+            throw new FaultException(exception.Message);
         }
     }
 }

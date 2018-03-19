@@ -26,7 +26,7 @@ namespace RCS.DIS.Services.DataModel
 
         public static int CreateOrUpdate(Zorgactiviteit feedEntity)
         {
-            using (var dbContext = new Entities())
+            using (var dbContext = new DisDbContext())
             {
                 feedEntity.Clean();
 
@@ -57,7 +57,7 @@ namespace RCS.DIS.Services.DataModel
         #region Retrieve
         public static int OmschrijvingContainsNumber(string searchString)
         {
-            using (var dbContext = new Entities())
+            using (var dbContext = new DisDbContext())
             {
                 var result = ContainsAllQuery(searchString, dbContext).Count();
 
@@ -67,7 +67,7 @@ namespace RCS.DIS.Services.DataModel
 
         public static Zorgactiviteit[] OmschrijvingContainsEntities(string searchString)
         {
-            using (var dbContext = new Entities())
+            using (var dbContext = new DisDbContext())
             {
                 var result = ContainsAllQuery(searchString, dbContext).ToArray();
 
@@ -78,7 +78,7 @@ namespace RCS.DIS.Services.DataModel
         // TODO This region seems suitable for abstraction,
         // except that this function cannot be overridden for it is static.
         // For the moment just leave it this way.
-        private static IQueryable<Zorgactiviteit> ContainsAllQuery(string searchString, Entities dbContext)
+        private static IQueryable<Zorgactiviteit> ContainsAllQuery(string searchString, DisDbContext dbContext)
         {
             string[] searchSubstrings = SplitOnSpaceOrQuote(searchString);
 

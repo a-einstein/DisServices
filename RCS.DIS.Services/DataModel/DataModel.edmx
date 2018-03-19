@@ -539,7 +539,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DisDbContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="DbcOverzichts" EntityType="Self.DbcOverzicht" />
           <EntitySet Name="DbcProfiels" EntityType="Self.DbcProfiel" />
           <EntitySet Name="Diagnoses" EntityType="Self.Diagnose" />
@@ -589,7 +589,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DataModelStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="DataModelStoreContainer" CdmEntityContainer="DisDbContext">
           <EntitySetMapping Name="DbcOverzichts">
             <EntityTypeMapping TypeName="DataModel.DbcOverzicht">
               <MappingFragment StoreEntitySet="DbcOverzicht">

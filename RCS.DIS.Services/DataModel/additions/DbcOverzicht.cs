@@ -30,7 +30,7 @@ namespace RCS.DIS.Services.DataModel
 
         public static int CreateOrUpdate(DbcOverzicht feedEntity)
         {
-            using (var dbContext = new Entities())
+            using (var dbContext = new DisDbContext())
             {
                 feedEntity.Clean();
 
@@ -69,7 +69,7 @@ namespace RCS.DIS.Services.DataModel
           int zorgproductCode,
           string versie)
         {
-            using (var dbContext = new Entities())
+            using (var dbContext = new DisDbContext())
             {
                 var result = KeysQuery(
                     jaar,
@@ -91,7 +91,7 @@ namespace RCS.DIS.Services.DataModel
            int zorgproductCode,
            string versie)
         {
-            using (var dbContext = new Entities())
+            using (var dbContext = new DisDbContext())
             {
                  var result = KeysQuery(
                     jaar,
@@ -116,7 +116,7 @@ namespace RCS.DIS.Services.DataModel
             string diagnoseCode,
             int zorgproductCode,
             string versie, 
-            Entities dbContext)
+            DisDbContext dbContext)
         {
             var query =
                 from entity in dbContext.DbcOverzichts

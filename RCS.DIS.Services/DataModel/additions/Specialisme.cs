@@ -26,7 +26,7 @@ namespace RCS.DIS.Services.DataModel
 
         public static int CreateOrUpdate(Specialisme feedEntity)
         {
-            using (var dbContext = new Entities())
+            using (var dbContext = new DisDbContext())
             {
                 feedEntity.Clean();
 
@@ -57,7 +57,7 @@ namespace RCS.DIS.Services.DataModel
         #region Retrieve
         public static int OmschrijvingContainsNumber(string searchString)
         {
-            using (var dbContext = new Entities())
+            using (var dbContext = new DisDbContext())
             {
                 var result = ContainsAllQuery(searchString, dbContext).Count();
 
@@ -67,7 +67,7 @@ namespace RCS.DIS.Services.DataModel
 
         public static Specialisme[] OmschrijvingContainsEntities(string searchString)
         {
-            using (var dbContext = new Entities())
+            using (var dbContext = new DisDbContext())
             {
                 var result = ContainsAllQuery(searchString, dbContext).ToArray();
 
@@ -75,7 +75,7 @@ namespace RCS.DIS.Services.DataModel
             };
         }
 
-        private static IQueryable<Specialisme> ContainsAllQuery(string searchString, Entities dbContext)
+        private static IQueryable<Specialisme> ContainsAllQuery(string searchString, DisDbContext dbContext)
         {
             string[] searchSubstrings = SplitOnSpaceOrQuote(searchString);
 

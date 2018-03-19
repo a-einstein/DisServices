@@ -27,7 +27,7 @@ namespace RCS.DIS.Services.DataModel
         // TODO Consider some sort of factory class.
         public static int CreateOrUpdate(Zorgproduct feedEntity)
         {
-            using (var dbContext = new Entities())
+            using (var dbContext = new DisDbContext())
             {
                 feedEntity.Clean();
 
@@ -47,7 +47,7 @@ namespace RCS.DIS.Services.DataModel
         // Currently only for test purposes.
         public static int Delete(object[] key)
         {
-            using (var dbContext = new Entities())
+            using (var dbContext = new DisDbContext())
             {
                 var foundEntity = dbContext.Zorgproducts.Find(key);
 
@@ -74,7 +74,7 @@ namespace RCS.DIS.Services.DataModel
         #region Retrieve
         public static int OmschrijvingContainsNumber(string searchString)
         {
-            using (var dbContext = new Entities())
+            using (var dbContext = new DisDbContext())
             {
                 var result = ContainsAllQuery(searchString, dbContext).Count();
 
@@ -84,7 +84,7 @@ namespace RCS.DIS.Services.DataModel
 
         public static Zorgproduct[] OmschrijvingContainsEntities(string searchString)
         {
-            using (var dbContext = new Entities())
+            using (var dbContext = new DisDbContext())
             {
                 var result = ContainsAllQuery(searchString, dbContext).ToArray();
 
@@ -92,7 +92,7 @@ namespace RCS.DIS.Services.DataModel
             };
         }
 
-        private static IQueryable<Zorgproduct> ContainsAllQuery(string searchString, Entities dbContext)
+        private static IQueryable<Zorgproduct> ContainsAllQuery(string searchString, DisDbContext dbContext)
         {
             string[] searchSubstrings = SplitOnSpaceOrQuote(searchString);
 

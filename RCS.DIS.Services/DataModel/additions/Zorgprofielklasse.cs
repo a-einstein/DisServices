@@ -24,7 +24,7 @@ namespace RCS.DIS.Services.DataModel
 
         public static int CreateOrUpdate(Zorgprofielklasse feedEntity)
         {
-            using (var dbContext = new Entities())
+            using (var dbContext = new DisDbContext())
             {
                 feedEntity.Clean();
 

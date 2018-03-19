@@ -13,10 +13,10 @@ namespace RCS.DIS.Services.DataModel
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class DisDbContext : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public DisDbContext()
+            : base("name=DisDbContext")
         {
         }
     

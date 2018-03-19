@@ -32,7 +32,7 @@ namespace RCS.DIS.Services.DataModel
 
         public static int CreateOrUpdate(DbcProfiel feedEntity)
         {
-            using (var dbContext = new Entities())
+            using (var dbContext = new DisDbContext())
             {
                 feedEntity.Clean();
 
@@ -73,7 +73,7 @@ namespace RCS.DIS.Services.DataModel
            string zorgactiviteitCode,
            string versie)
         {
-            using (var dbContext = new Entities())
+            using (var dbContext = new DisDbContext())
             {
                 var result = KeysQuery(
                     jaar,
@@ -97,7 +97,7 @@ namespace RCS.DIS.Services.DataModel
            string zorgactiviteitCode,
            string versie)
         {
-            using (var dbContext = new Entities())
+            using (var dbContext = new DisDbContext())
             {
                 var result = KeysQuery(
                     jaar,
@@ -125,7 +125,7 @@ namespace RCS.DIS.Services.DataModel
             int zorgproductCode,
             string zorgactiviteitCode,
             string versie,
-            Entities dbContext)
+            DisDbContext dbContext)
         {
             var query =
                 from entity in dbContext.DbcProfiels
@@ -146,7 +146,7 @@ namespace RCS.DIS.Services.DataModel
 
         public static short[] Jaren()
         {
-            using (var dbContext = new Entities())
+            using (var dbContext = new DisDbContext())
             {
                 // TODO Check efficiency.
                 var result = dbContext.DbcProfiels.Select(entity => entity.Jaar).Distinct().ToArray();
@@ -157,7 +157,7 @@ namespace RCS.DIS.Services.DataModel
 
         public static string[] Versies()
         {
-            using (var dbContext = new Entities())
+            using (var dbContext = new DisDbContext())
             {
                 // TODO Check efficiency.
                 var result = dbContext.DbcProfiels.Select(entity => entity.Versie).Distinct().ToArray();

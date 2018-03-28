@@ -24,7 +24,7 @@ namespace RCS.DIS.Services.Retrieving
         {
             try
             {
-                return DataModel.DbcProfiel.Jaren();
+                return DataModel.DbcOverzicht.Jaren();
             }
             catch (Exception exception)
             {
@@ -37,7 +37,7 @@ namespace RCS.DIS.Services.Retrieving
         {
             try
             {
-                return DataModel.DbcProfiel.Versies();
+                return DataModel.DbcOverzicht.Versies();
             }
             catch (Exception exception)
             {

@@ -131,6 +131,30 @@ namespace RCS.DIS.Services.DataModel
 
             return query;
         }
+
+        // Arbitrarily collect here, being the smaller of the 2 overview tables.
+
+        public static short[] Jaren()
+        {
+            using (var dbContext = new DisDbContext())
+            {
+                // TODO Check efficiency.
+                var result = dbContext.DbcOverzichts.Select(entity => entity.Jaar).Distinct().ToArray();
+
+                return result;
+            };
+        }
+
+        public static string[] Versies()
+        {
+            using (var dbContext = new DisDbContext())
+            {
+                // TODO Check efficiency.
+                var result = dbContext.DbcOverzichts.Select(entity => entity.Versie).Distinct().ToArray();
+
+                return result;
+            };
+        }
         #endregion
     }
 }
